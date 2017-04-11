@@ -34,5 +34,9 @@ QQ交流群号：483681368**
 
 ![输入图片说明](http://git.oschina.net/uploads/images/2017/0410/210612_4eb330ea_134431.png "在这里输入图片标题")
 
- **4.修改zscat-shop模块下的application.properties 的数据库链接 ，
+ **4.使用beetl模板 ，修改zscat-shop模块下的application.properties 的数据库链接 ，
 运行Application类，访问链接 http://localhost:8083/** 
+![输入图片说明](http://git.oschina.net/uploads/images/2017/0411/152322_28b20599_134431.png "在这里输入图片标题")
+![输入图片说明](http://git.oschina.net/uploads/images/2017/0411/152435_97e601b0_134431.png "在这里输入图片标题")
+![输入图片说明](http://git.oschina.net/uploads/images/2017/0411/152338_deb92a3b_134431.png "在这里输入图片标题")
+![输入图片说明](http://git.oschina.net/uploads/images/2017/0411/152349_aeae369a_134431.png "在这里输入图片标题")
