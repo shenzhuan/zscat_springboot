@@ -1,4 +1,4 @@
-### springboot springclod mybatis 通用mapper redis ，kafka freemaker  blog cms shop 权限管理
+### springboot springclod mybatis 通用mapper redis ，kafka freemaker ，beetl，spring blog cms shop 权限管理
 
 
  **zscat-springboot，JavaEE管理系统基础框架-zscat的SpringBoot版本
