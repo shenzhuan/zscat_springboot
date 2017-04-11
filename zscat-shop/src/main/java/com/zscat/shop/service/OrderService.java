@@ -14,5 +14,8 @@ import com.zscat.shop.model.Order;
  */
 public interface OrderService extends BaseService<Order>  {
 
+	Order insertOrder(String[] cartIds, Long addressid, Long paymentid,
+			String usercontent);
+
 
 }

@@ -29,7 +29,6 @@
 	<div class="hmtop">
 		<!--顶部导航条 -->
 		@layout("/mall/layout/mallTop.html"){}
-
 		<div class="clear"></div>
 	</div>
 	<!-- <b class="line" style="height: 35px;"></b> -->
@@ -112,8 +111,8 @@
 															</dt>
 															@for(use in useList!){
 															<dd>
-																<a rel="nofollow" title="${use.name}" target="_blank"
-																	href="${ctxPath!}/front/search/${use.id!}" rel="nofollow"><span class="red">${use.name}</span></a>
+																<a rel="nofollow" title="${use.truename!}" target="_blank"
+																	href="${ctxPath!}/front/search/${use.id!}" rel="nofollow"><span class="red">${use.truename!}</span></a>
 															</dd>
 															@}
 														</dl>
@@ -207,12 +206,11 @@
 					class="am-icon-angle-double-right"></em></span>
 				<div class="demo">
 					<ul>
-					 @var artList= goods.getAdvArticle(5);
-					@for(art in artList.list!){
+					
 						<li class="title-first"><a target="_blank" href="${ctxPath}/front/blog/index"> <img
 								src="${ctxPath}/static/mall/images/TJ2.jpg"></img> <span>[${art.type!}]</span>${art.title!}
 						</a></li>	
-					@}
+					
 					</ul>
 
 				</div>
@@ -323,7 +321,7 @@
 							</div>
 
 						</div>
-						<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[0].id}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[0].img}" /></a>
+						<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[0].id!}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[0].img!}" /></a>
 					</div>
 
 					<li>
@@ -336,7 +334,7 @@
 								</div>
 
 							</div>
-							<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[1].id}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[1].img}" /></a>
+							<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[1].id!}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[1].img!}" /></a>
 						</div>
 					</li>
 					<li>
@@ -349,7 +347,7 @@
 								</div>
 
 							</div>
-							<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[2].id}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[2].img} " /></a>
+							<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[2].id!}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[2].img!} " /></a>
 						</div>
 					</li>
 					<li>
@@ -362,7 +360,7 @@
 								</div>
 
 							</div>
-							<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[3].id}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[3].img}" /></a>
+							<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[3].id!}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[3].img!}" /></a>
 						</div>
 					</li>
 					<li>
@@ -375,7 +373,7 @@
 								</div>
 
 							</div>
-							<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[4].id}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[4].img}" /></a>
+							<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[4].id!}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[4].img!}" /></a>
 						</div>
 					</li>
 					<li>
@@ -388,7 +386,7 @@
 								</div>
 
 							</div>
-							<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[5].id}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[5].img}" /></a>
+							<a href="${ctxPath!}/front/goods/goodsDetail/${goodsList[5].id!}" target="_blank"><img src="${ctxPath!}/static/upload/project/${goodsList[5].img!}" /></a>
 						</div>
 					</li>
 				</div>
@@ -440,7 +438,7 @@
 							<ul class="user_info ">
 								<li>用户名：
 						    @if(auth.isLogin()){ 
-							  ${auth.getLoginUser().name}
+							  ${auth.getLoginUser().truename}
 							@}else{ 
 							      匿名
 							@}

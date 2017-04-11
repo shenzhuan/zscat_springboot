@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="tk.mybatis.springboot.shop.mapper.ProductMapper" >
-  <resultMap id="BaseResultMap" type="tk.mybatis.springboot.shop.model.Product" >
+<mapper namespace="com.zscat.shop.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.zscat.shop.model.Product" >
     <!--
       WARNING - @mbg.generated
     -->
@@ -25,4 +25,21 @@
     <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
     <result column="summary" property="summary" jdbcType="LONGVARCHAR" />
   </resultMap>
+  <sql id="prjProductColumns">
+		id,title,tag,remark,summary,clickhit,typeid,img,typename,type,orderby,prices,imgmore,create_by,create_date,del_flag
+	</sql>
+    <select id="selectProductByFloor" resultType="com.zscat.shop.model.Product">
+		
+		SELECT * from t_product p LEFT JOIN t_floor_product f 
+        on p.id=f.productid where f.floorid =#{id}
+	</select>
+	
+	<select id="getProductByFloorid" resultType="com.zscat.shop.model.Product">
+		SELECT * from t_product p LEFT JOIN t_floor_product f 
+        on p.id=f.productid where f.floorid =#{id}
+	</select>
+	<select id="selectgoodsListByType" resultType="com.zscat.shop.model.Product" parameterType="java.lang.Long">
+	select * from t_product t where t.type in (
+	select c.id  from t_product_class c where FIND_IN_SET(#{type},c.parent_ids))
+	</select>
 </mapper>

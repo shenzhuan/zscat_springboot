@@ -1,5 +1,6 @@
 package com.zscat.shop.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Table;
@@ -13,7 +14,7 @@ public class Order extends BaseEntity{
     /**
      * 总价格
      */
-    private Long totalprice;
+    private BigDecimal totalprice;
 
     /**
      * 总个数
@@ -46,7 +47,7 @@ public class Order extends BaseEntity{
      *
      * @return totalprice - 总价格
      */
-    public Long getTotalprice() {
+    public BigDecimal getTotalprice() {
         return totalprice;
     }
 
@@ -55,7 +56,7 @@ public class Order extends BaseEntity{
      *
      * @param totalprice 总价格
      */
-    public void setTotalprice(Long totalprice) {
+    public void setTotalprice(BigDecimal totalprice) {
         this.totalprice = totalprice;
     }
 

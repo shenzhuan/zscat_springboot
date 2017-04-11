@@ -3,6 +3,8 @@
   */
 package com.zscat.shop.service;
 
+import java.util.List;
+
 import com.zscat.common.base.BaseService;
 import com.zscat.shop.model.Cart;
 
@@ -13,6 +15,10 @@ import com.zscat.shop.model.Cart;
  * @version 4.0v
  */
 public interface CartService extends BaseService<Cart>  {
+
+	List<Cart> selectOwnCart();
+
+	int selectOwnCartCount();
 
 
 }

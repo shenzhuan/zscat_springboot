@@ -1,4 +1,4 @@
-package com.zsTrade.web.front;
+package com.zscat.front;
 
 
 import java.io.ByteArrayOutputStream;
@@ -23,28 +23,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.zsTrade.common.constant.ZsCatConstant;
-import com.zsTrade.common.pay.CommUtil;
-import com.zsTrade.common.pay.WxCommonUtil;
-import com.zsTrade.common.pay.alipay.config.AlipayConfig;
-import com.zsTrade.common.pay.alipay.services.AlipayService;
-import com.zsTrade.common.pay.alipay.util.AlipayNotify;
-import com.zsTrade.common.utils.LogUtils;
-import com.zsTrade.common.utils.QRCodeEncoderHandler;
-import com.zsTrade.common.utils.Utils;
-import com.zsTrade.web.prj.model.Order;
-import com.zsTrade.web.prj.model.OrderLog;
-import com.zsTrade.web.prj.service.ArticleService;
-import com.zsTrade.web.prj.service.FloorService;
-import com.zsTrade.web.prj.service.OrderLogService;
-import com.zsTrade.web.prj.service.OrderService;
-import com.zsTrade.web.prj.service.ProductClassService;
-import com.zsTrade.web.prj.service.ProductService;
-import com.zsTrade.web.prj.service.ProductTypeService;
-import com.zsTrade.web.sys.service.SysRoleService;
-import com.zsTrade.web.sys.service.SysUserService;
-import com.zsTrade.web.sys.utils.Symphonys;
-import com.zsTrade.web.sys.utils.SysUserUtils;
+
+
+
+import com.mysql.jdbc.log.LogUtils;
+import com.zscat.common.utils.Utils;
+import com.zscat.shop.model.Order;
+import com.zscat.shop.model.OrderLog;
+import com.zscat.shop.service.FloorService;
+import com.zscat.shop.service.MemberService;
+import com.zscat.shop.service.OrderLogService;
+import com.zscat.shop.service.OrderService;
+import com.zscat.shop.service.ProductClassService;
+import com.zscat.shop.service.ProductService;
+import com.zscat.shop.service.ProductTypeService;
+import com.zscat.util.Symphonys;
+import com.zscat.util.SysUserUtils;
+import com.zscat.util.pay.CommUtil;
+import com.zscat.util.pay.WxCommonUtil;
+import com.zscat.util.pay.alipay.config.AlipayConfig;
+import com.zscat.util.pay.alipay.services.AlipayService;
+import com.zscat.util.pay.alipay.util.AlipayNotify;
 
 	/**
 	 * 
@@ -61,13 +60,10 @@ public class PayController {
 	@Resource
 	private ProductService ProductService;
 	@Resource
-	private SysUserService sysUserService;
+	private MemberService MemberService;
 	@Resource
 	private  FloorService floorService;
-	@Resource
-	private ArticleService articleService;
-	@Resource
-	private SysRoleService SysRoleService;
+	
 	@Resource
 	private ProductTypeService ProductTypeService;
 	@Resource
@@ -88,7 +84,7 @@ public class PayController {
 		String UNI_URL = "https://api.mch.weixin.qq.com/pay/unifiedorder";
 		Order of=OrderService.selectByPrimaryKey(order_id);
 		String returnhtml = null;
-		if (of.getStatus() == ZsCatConstant.ORDER_ONE) {
+		if (of.getStatus() == SysUserUtils.ORDER_ONE) {
 		if("wxcodepay".equals(payType)){
 			of.setPaymentid(1L);
 		}
@@ -123,18 +119,18 @@ public class PayController {
 			Map<String, String> map = new HashMap<String, String>();
 			try {
 				map = WxCommonUtil.doXMLParse(result);
-				LogUtils.BUSSINESS_LOG.info("------------------code_url=" + map.get("code_url") + ";      result_code="
+				System.out.println("------------------code_url=" + map.get("code_url") + ";      result_code="
 						+ map.get("code_url") + "------------------------------");
 			} catch (Exception e) {
-				LogUtils.BUSSINESS_LOG.info("doXMLParse()--error", e);
+				System.out.println("doXMLParse()--error");
 			}
 			String returnCode = map.get("return_code");
 			String resultCode = map.get("result_code");
 
 			if (returnCode.equalsIgnoreCase("SUCCESS") && resultCode.equalsIgnoreCase("SUCCESS")) {
 				codeUrl = map.get("code_url");
-				// 拿到codeUrl，生成二维码图片
-				byte[] imgs = QRCodeEncoderHandler.createQRCode(codeUrl);
+				// 拿到codeUrl，生成二维码图片TODO
+			//	byte[] imgs = QRCodeEncoderHandler.createQRCode(codeUrl);
 
 				String urls = request.getRealPath("/") +  "upload" 
 						+ java.io.File.separator + "weixin_qr" + java.io.File.separator + "wxpay"
@@ -153,14 +149,14 @@ public class PayController {
 				}
 				// 图片的实际路径
 				String imgfile = urls + order_id + ".png";
-
-				QRCodeEncoderHandler.saveImage(imgs, imgfile, "png");
+//TODO
+			//	QRCodeEncoderHandler.saveImage(imgs, imgfile, "png");
 
 				// 图片的网路路径
 				String imgUrl = Utils.getURL(request) + "/" +  "upload" 
 						+ "/weixin_qr/wxpay/" + order_id + ".png";
 				//String imgUrl = Utils.getURL(request)+"/static/shen.png";
-				LogUtils.BUSSINESS_LOG.info("图片的网路路径imgurl={}", imgUrl);
+			//	LogUtils.BUSSINESS_LOG.info("图片的网路路径imgurl={}", imgUrl);
  
 				returnhtml = "<img src='" + imgUrl + "' style='width:200px;height:200px;'/>";
 
@@ -227,7 +223,7 @@ public class PayController {
 
         if (map.get("result_code").toString().equalsIgnoreCase("SUCCESS")) {
             
-         order.setStatus(ZsCatConstant.ORDER_TWO);
+         order.setStatus(SysUserUtils.ORDER_TWO);
            OrderService.updateByPrimaryKeySelective(order);
            OrderLog log=new OrderLog();
 			log.setOrderId(order.getId());
@@ -267,7 +263,7 @@ public class PayController {
     	 ModelAndView mv =new ModelAndView();
         
 		Order of = OrderService.selectByPrimaryKey(Long.parseLong(order_id));
-		if (of.getStatus() == ZsCatConstant.ORDER_ONE) {
+		if (of.getStatus() == SysUserUtils.ORDER_ONE) {
 			if (CommUtil.null2String(payType).equals("")) {
 				
 				 mv.setViewName("error");

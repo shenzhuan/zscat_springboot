@@ -3,6 +3,9 @@
   */
 package com.zscat.shop.service;
 
+import java.util.List;
+
+import com.github.pagehelper.PageInfo;
 import com.zscat.common.base.BaseService;
 import com.zscat.shop.model.Product;
 
@@ -13,6 +16,12 @@ import com.zscat.shop.model.Product;
  * @version 4.0v
  */
 public interface ProductService extends BaseService<Product>  {
+
+	public List<Product> selectProductByFloor(Long id);
+	public List<Product> getProductByFloorid(Long tid);
+	public PageInfo<Product> selectgoodsListByType(int i, int j, Product g);
+	public List<Product> selectRepoer();
+
 
 
 }

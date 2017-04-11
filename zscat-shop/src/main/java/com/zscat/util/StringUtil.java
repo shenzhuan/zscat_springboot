@@ -65,9 +65,18 @@ public class StringUtil {
 
 	public static boolean isBlank(Long str) {
         if(str != null) {
-            return true;
+            return false;
         } else {
             return true;
         }
+	}
+
+
+	public static boolean isNoneBlank(String str) {
+		 if(str != null) {
+	            return true;
+	        } else {
+	            return false;
+	        }
 	}
 }

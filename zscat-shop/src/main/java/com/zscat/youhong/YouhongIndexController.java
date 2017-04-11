@@ -1,7 +1,7 @@
-package com.zsTrade.web.youhong;
+package com.zscat.youhong;
 
 
-import java.lang.reflect.Member;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,23 +20,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
-import com.zsTrade.common.constant.Constant;
-import com.zsTrade.common.utils.PasswordEncoder;
-import com.zsTrade.web.bases.model.Area;
-import com.zsTrade.web.prj.model.Article;
-import com.zsTrade.web.prj.model.Floor;
-import com.zsTrade.web.prj.model.Product;
-import com.zsTrade.web.prj.model.ProductClass;
-import com.zsTrade.web.prj.model.ProductType;
-import com.zsTrade.web.prj.service.ArticleService;
-import com.zsTrade.web.prj.service.FloorService;
-import com.zsTrade.web.prj.service.ProductClassService;
-import com.zsTrade.web.prj.service.ProductService;
-import com.zsTrade.web.prj.service.ProductTypeService;
-import com.zsTrade.web.sys.model.SysUser;
-import com.zsTrade.web.sys.service.SysRoleService;
-import com.zsTrade.web.sys.service.SysUserService;
-import com.zsTrade.web.sys.utils.SysUserUtils;
+import com.zscat.shop.model.Floor;
+import com.zscat.shop.model.Member;
+import com.zscat.shop.model.Product;
+import com.zscat.shop.model.ProductClass;
+import com.zscat.shop.model.ProductType;
+import com.zscat.shop.service.FloorService;
+import com.zscat.shop.service.MemberService;
+import com.zscat.shop.service.ProductClassService;
+import com.zscat.shop.service.ProductService;
+import com.zscat.shop.service.ProductTypeService;
+import com.zscat.util.PasswordEncoder;
+import com.zscat.util.SysUserUtils;
 
 	/**
 	 * 
@@ -54,13 +49,10 @@ public class YouhongIndexController {
 	@Resource
 	private ProductService ProductService;
 	@Resource
-	private SysUserService sysUserService;
+	private MemberService MemberService;
 	@Resource
 	private  FloorService floorService;
-	@Resource
-	private ArticleService articleService;
-	@Resource
-	private SysRoleService SysRoleService;
+	
 	@Resource
 	private ProductTypeService ProductTypeService;
 	
@@ -76,9 +68,9 @@ public class YouhongIndexController {
 	            List<ProductClass> gcList=ProductClassService.selectPage(1, 15, gc).getList();
 	            model.addObject("spList", floorService.select(new Floor()));
 	            model.addObject("gcList", gcList);
-	            List<Article> artList=articleService.select(new Article());
-	            model.addObject("artList", artList);
-	            List<SysUser> useList=sysUserService.select(new SysUser(), "no desc");
+//	            List<Article> artList=articleService.select(new Article());
+//	            model.addObject("artList", artList);
+	            List<Member> useList=MemberService.select(new Member(), "no desc");
 		        model.addObject("useList", useList);
 		        
 		        List<ProductType> typeList=ProductTypeService.select(new ProductType());
@@ -101,9 +93,9 @@ public class YouhongIndexController {
 	            List<ProductClass> gcList=ProductClassService.selectPage(1, 15, gc).getList();
 	            model.addObject("spList", floorService.select(new Floor()));
 	            model.addObject("gcList", gcList);
-	            List<Article> artList=articleService.select(new Article());
-	            model.addObject("artList", artList);
-	            List<SysUser> useList=sysUserService.select(new SysUser(), "no desc");
+//	            List<Article> artList=articleService.select(new Article());
+//	            model.addObject("artList", artList);
+	            List<Member> useList=MemberService.select(new Member(), "no desc");
 		        model.addObject("useList", useList);
 		        
 		        List<ProductType> typeList=ProductTypeService.select(new ProductType());
@@ -181,7 +173,7 @@ public class YouhongIndexController {
 	 @RequestMapping("/information/{createBy}")
 	  public ModelAndView information(@PathVariable("createBy") Long createBy) {
 		 ModelAndView model = new ModelAndView("/youhong/person/information");
-        SysUser member=sysUserService.selectByPrimaryKey(createBy);
+        Member member=MemberService.selectByPrimaryKey(createBy);
         model.addObject("member", member);
 		 return model;
 	 }
@@ -193,10 +185,10 @@ public class YouhongIndexController {
 	 @RequestMapping("/newD/{id}")
 	  public ModelAndView newD(@PathVariable("id") Long id) {
 		 ModelAndView model = new ModelAndView("/youhong/person/blog");
-        Article article=articleService.selectByPrimaryKey(id);
-        model.addObject("article", article);
-        List<Article> articleList=articleService.select(new Article());
-        model.addObject("articleList", articleList);
+//        Article article=articleService.selectByPrimaryKey(id);
+//        model.addObject("article", article);
+//        List<Article> articleList=articleService.select(new Article());
+//        model.addObject("articleList", articleList);
 		 return model;
 	 }
 	   /**
@@ -237,9 +229,9 @@ public class YouhongIndexController {
 //				msg.put("error", "验证码错误");
 //				return msg;
 //			}
-			SysUser user = sysUserService.checkUser(username, password);
+			Member user = MemberService.checkUser(username, password);
 			if (null != user) {
-				session.setAttribute(Constant.SESSION_LOGIN_USER, user);
+				session.setAttribute(SysUserUtils.SESSION_LOGIN_USER, user);
 			} else {
 				msg.put("error", "用户名或密码错误");
 			}
@@ -263,6 +255,7 @@ public class YouhongIndexController {
 		public @ResponseBody Map<String, Object> reg(
 				@RequestParam(value = "password",required=true)String  password,
 				@RequestParam(value = "email",required=false)String email,
+				@RequestParam(value = "username",required=false)String username,
 				@RequestParam(value = "phone",required=false)String phone,
 				@RequestParam(value = "passwordRepeat",required=true)String passwordRepeat,HttpServletRequest request) {
 			Map<String, Object> msg = new HashMap<String, Object>();
@@ -271,27 +264,19 @@ public class YouhongIndexController {
 				return msg;
 			}
 			String secPwd = null ;
-			SysUser m=new SysUser();
-			if(StringUtils.isNoneBlank(email)){
-				m.setEmail(email);
-				m.setUsername(email);
-				secPwd = PasswordEncoder.encrypt(password, email);
-			}
-			if(StringUtils.isNoneBlank(phone)){
-				secPwd = PasswordEncoder.encrypt(password, phone);
-				m.setMobile(phone);
-				m.setUsername(phone);
-			}
+			Member m=new Member();
+			m.setAddtime(new Date());m.setStatus(1);
+				m.setUsername(username);
+				secPwd = PasswordEncoder.encrypt(password, username);
+			
 			m.setPassword(secPwd);
-			m.setName(m.getUsername());
+			m.setTruename(m.getUsername());
 			try {
-				m.setCompanyId(50L);m.setOfficeId(50L);
-				int result = sysUserService.insertSelective(m);
-				m.setRoleIds(new Long[]{19L});
-				sysUserService.insertUserRoleByUserId(m);
+				int result = MemberService.insertSelective(m);
+			
 				HttpSession session = request.getSession();
 				if (result>0) {
-					session.setAttribute(Constant.SESSION_LOGIN_USER, m);
+					session.setAttribute(SysUserUtils.SESSION_LOGIN_USER, m);
 				} else {
 					msg.put("error", "注册失败");
 				}
@@ -326,7 +311,7 @@ public class YouhongIndexController {
 		@RequestMapping("/memberList")
 		  public ModelAndView memberList() {
 			 ModelAndView model = new ModelAndView("/youhong/member");
-			 List<SysUser> page=sysUserService.select(new SysUser(), "no desc");
+			 List<Member> page=MemberService.select(new Member(), "no desc");
 	        model.addObject("page", page);
 			 return model;
 		 }

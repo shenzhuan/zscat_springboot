@@ -1,38 +1,19 @@
-package com.zsTrade.web.sys.utils;
+package com.zscat.util;
 
-import java.lang.reflect.Member;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.primitives.Ints;
-import com.zsTrade.common.beetl.utils.BeetlUtils;
-import com.zsTrade.common.constant.Constant;
-import com.zsTrade.common.spring.utils.SpringContextHolder;
-import com.zsTrade.common.utils.CacheUtils;
-import com.zsTrade.common.utils.TreeUtils;
-import com.zsTrade.web.sys.model.SysOffice;
-import com.zsTrade.web.sys.model.SysResource;
-import com.zsTrade.web.sys.model.SysRole;
-import com.zsTrade.web.sys.model.SysUser;
-import com.zsTrade.web.sys.service.SysOfficeService;
-import com.zsTrade.web.sys.service.SysResourceService;
-import com.zsTrade.web.sys.service.SysRoleService;
-import com.zsTrade.web.sys.service.SysUserService;
+import com.zscat.shop.model.Member;
+
+
 
 /**
  * @ClassName:SysUserUtils
@@ -42,6 +23,10 @@ import com.zsTrade.web.sys.service.SysUserService;
 public class SysUserUtils {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SysUserUtils.class);
+	public static final String SESSION_LOGIN_USER = "MEMBER_LOGIN";
+	public static final Integer ORDER_TWO = 2;
+	public static final Integer ORDER_NiNe = 9;
+	public static final Integer ORDER_ONE = 1;
 
 	/**
 	 * 得到当前session
@@ -54,8 +39,8 @@ public class SysUserUtils {
 	/**
 	 * session中的用户
 	 */
-	public static SysUser getSessionLoginUser(){
-		return (SysUser) getSession().getAttribute(Constant.SESSION_LOGIN_USER);
+	public static Member getSessionLoginUser(){
+		return (Member) getSession().getAttribute(SysUserUtils.SESSION_LOGIN_USER);
 	}
 	
 	/**

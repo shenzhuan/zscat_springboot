@@ -1,4 +1,4 @@
-package com.zsTrade.web.front;
+package com.zscat.front;
 
 
 import java.util.List;
@@ -12,14 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageInfo;
-import com.zsTrade.common.constant.Constant;
-import com.zsTrade.common.jackson.JsonUtils;
-import com.zsTrade.common.redis.RedisUtils;
-import com.zsTrade.common.utils.IPUtils;
-import com.zsTrade.web.prj.model.Product;
-import com.zsTrade.web.prj.model.Reply;
-import com.zsTrade.web.prj.service.ProductService;
-import com.zsTrade.web.prj.service.ReplyService;
+import com.zscat.shop.model.Product;
+import com.zscat.shop.model.Reply;
+import com.zscat.shop.service.ProductService;
+import com.zscat.shop.service.ReplyService;
 	/**
 	 * 
 	 * @author zsCat 2016-10-31 13:59:18

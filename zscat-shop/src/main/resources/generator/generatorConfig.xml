@@ -11,7 +11,7 @@
         <property name="endingDelimiter" value="`"/>
 
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
-            <property name="mappers" value="com.zscat.base.MyMapper"/>
+            <property name="mappers" value="com.zscat.common.base.MyMapper"/>
         </plugin>
 
         <jdbcConnection driverClass="${druid.driver-class}"
@@ -20,20 +20,19 @@
                         password="${druid.password}">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.zscat.blog.model" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.zscat.shop.model" targetProject="src/main/java"/>
 
-        <sqlMapGenerator targetPackage="mapper.blog" targetProject="src/main/resources"/>
+        <sqlMapGenerator targetPackage="mapper.shop" targetProject="src/main/resources"/>
 
-        <javaClientGenerator targetPackage="com.zscat.blog.mapper" targetProject="src/main/java"
+        <javaClientGenerator targetPackage="com.zscat.shop.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
- <table tableName="t_blog" domainObjectName="Blog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
-  <table tableName="t_link" domainObjectName="BlogLink" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+ <table tableName="t_address" domainObjectName="Address" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+  <table tableName="t_consult" domainObjectName="Consult" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+  <table tableName="t_favorites" domainObjectName="Favorites" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+  <table tableName="t_payment" domainObjectName="Payment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
  
-  <table tableName="t_blog_template" domainObjectName="BlogTemplate" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
-   <table tableName="t_blogger" domainObjectName="Blogger" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
-    <table tableName="t_blogtype" domainObjectName="BlogType" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
-     <table tableName="t_comment" domainObjectName="BlogComment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"><generatedKey column="id" sqlStatement="Mysql" identity="true"/></table>
+ 
         <!-- <table tableName="%"> -->
         
             <!--mysql 配置-->

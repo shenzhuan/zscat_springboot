@@ -1,9 +1,10 @@
-package com.zsTrade.web.wap1;
+package com.zscat.wap1;
 
 
-import java.util.Collections;
+import java.awt.geom.Area;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+
+
+import org.assertj.core.internal.Maps;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,39 +27,26 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.github.pagehelper.PageInfo;
-import com.google.common.collect.Maps;
-import com.zsTrade.common.constant.Constant;
-import com.zsTrade.common.constant.ZsCatConstant;
-import com.zsTrade.common.jackson.JsonUtils;
-import com.zsTrade.common.redis.RedisUtils;
-import com.zsTrade.common.utils.Collections3;
-import com.zsTrade.common.utils.DateUtils;
-import com.zsTrade.common.utils.IPUtils;
-import com.zsTrade.web.bases.model.Address;
-import com.zsTrade.web.bases.model.Area;
-import com.zsTrade.web.bases.model.Consult;
-import com.zsTrade.web.bases.model.Favorites;
-import com.zsTrade.web.bases.model.Payment;
-import com.zsTrade.web.bases.service.AddressService;
-import com.zsTrade.web.bases.service.AreaService;
-import com.zsTrade.web.bases.service.ConsultService;
-import com.zsTrade.web.bases.service.FavoritesService;
-import com.zsTrade.web.bases.service.PaymentService;
-import com.zsTrade.web.prj.model.Article;
-import com.zsTrade.web.prj.model.Cart;
-import com.zsTrade.web.prj.model.Order;
-import com.zsTrade.web.prj.model.Product;
-import com.zsTrade.web.prj.model.ProductClass;
-import com.zsTrade.web.prj.model.Reply;
-import com.zsTrade.web.prj.service.ArticleService;
-import com.zsTrade.web.prj.service.CartService;
-import com.zsTrade.web.prj.service.OrderService;
-import com.zsTrade.web.prj.service.ProductClassService;
-import com.zsTrade.web.prj.service.ProductService;
-import com.zsTrade.web.prj.service.ReplyService;
-import com.zsTrade.web.sys.model.SysUser;
-import com.zsTrade.web.sys.service.SysUserService;
-import com.zsTrade.web.sys.utils.SysUserUtils;
+import com.zscat.shop.model.Address;
+import com.zscat.shop.model.Cart;
+import com.zscat.shop.model.Consult;
+import com.zscat.shop.model.Favorites;
+import com.zscat.shop.model.Member;
+import com.zscat.shop.model.Order;
+import com.zscat.shop.model.Payment;
+import com.zscat.shop.model.Product;
+import com.zscat.shop.model.Reply;
+import com.zscat.shop.service.AddressService;
+import com.zscat.shop.service.CartService;
+import com.zscat.shop.service.ConsultService;
+import com.zscat.shop.service.FavoriteService;
+import com.zscat.shop.service.OrderService;
+import com.zscat.shop.service.PaymentService;
+import com.zscat.shop.service.ProductClassService;
+import com.zscat.shop.service.ProductService;
+import com.zscat.shop.service.ReplyService;
+import com.zscat.util.IPUtils;
+import com.zscat.util.SysUserUtils;
 	/**
 	 * 
 	 * @author zsCat 2016-10-31 14:01:30
@@ -81,29 +72,27 @@ public class Wap1PersonController {
 	@Resource
 	private ConsultService ConsultService;
 	@Resource
-	private FavoritesService FavoritesService;
-	@Resource
-	private AreaService AreaService;
+	private FavoriteService FavoritesService;
+	
 	@Resource
 	private CartService CartService;
 	@Resource
 	private ReplyService ReplyService;
-	@Resource
-	private ArticleService articleService;
+	
 	@Resource
 	private ProductClassService goodsClassService;
 	@Resource
-	private SysUserService sysUserService;
+	private com.zscat.shop.service.MemberService MemberService;
 	 @RequestMapping("")
 	  public ModelAndView index() {
 	        try {
 	            ModelAndView model = new ModelAndView("/wap1/user");
-//	            SysUser member=SysUserUtils.getSessionLoginUser();
+//	            Member member=SysUserUtils.getSessionLoginUser();
 //	            model.addObject("member", member);
 //	            
 //	            Order o=new Order();
-//				o.setStatus(ZsCatConstant.ORDER_TWO);
-//				o.setUserid(SysUserUtils.getCacheLoginUser().getId());
+//				o.setStatus(ZsCatSysUserUtils.ORDER_TWO);
+//				o.setUserid(SysUserUtils.getSessionLoginUser().getId());
 //				List<Order> orderList=OrderService.select(o);
 //				model.addObject("orderList", orderList);
 //				
@@ -137,7 +126,7 @@ public class Wap1PersonController {
 	 @RequestMapping("/profile")
 	  public ModelAndView profile() {
 		  ModelAndView model = new ModelAndView("/wap1/profile");
-          SysUser member=SysUserUtils.getSessionLoginUser();
+          Member member=SysUserUtils.getSessionLoginUser();
           model.addObject("member", member);
 		  return model;
 	 }
@@ -146,14 +135,14 @@ public class Wap1PersonController {
 	 @RequestMapping("/change_name")
 	  public ModelAndView change_name() {
 		  ModelAndView model = new ModelAndView("/wap1/change_name");
-         SysUser member=SysUserUtils.getSessionLoginUser();
+         Member member=SysUserUtils.getSessionLoginUser();
          model.addObject("member", member);
 		  return model;
 	 }
 	 @RequestMapping("/change_tel")
 	  public ModelAndView change_tel() {
 		  ModelAndView model = new ModelAndView("/wap1/change_tel");
-         SysUser member=SysUserUtils.getSessionLoginUser();
+         Member member=SysUserUtils.getSessionLoginUser();
          model.addObject("member", member);
 		  return model;
 	 }
@@ -168,9 +157,9 @@ public class Wap1PersonController {
 		* @return
 		 */
 		@RequestMapping(value = "updateUser1", method = RequestMethod.POST)
-		public ModelAndView updateUser1(@ModelAttribute SysUser sysUser,HttpServletRequest request){
+		public ModelAndView updateUser1(@ModelAttribute Member Member,HttpServletRequest request){
 			 ModelAndView model = new ModelAndView("/wap1/profile");
-			 sysUserService.saveSysUser(sysUser);
+			 MemberService.insertSelective(Member);
 			 return model;
 		}
 		/**
@@ -178,9 +167,9 @@ public class Wap1PersonController {
 		* @return
 		 */
 		@RequestMapping(value = "updateUser", method = RequestMethod.POST)
-		public ModelAndView updateUser(@ModelAttribute SysUser sysUser,HttpServletRequest request){
+		public ModelAndView updateUser(@ModelAttribute Member Member,HttpServletRequest request){
 			 ModelAndView model = new ModelAndView("/wap1/profile");
-			 sysUserService.saveSysUser(sysUser);
+			 MemberService.insertSelective(Member);
 			 return model;
 		}
 	 // 自定义比较器：按销售情况排序  
@@ -207,13 +196,10 @@ public class Wap1PersonController {
 	 @RequestMapping("/information")
 	  public ModelAndView information() {
 		 ModelAndView model = new ModelAndView("/wap1/information");
-         SysUser member=SysUserUtils.getSessionLoginUser();
+         Member member=SysUserUtils.getSessionLoginUser();
          model.addObject("member", member);
 		 
-         Area area=new Area();
-		 area.setParentId(1L);
-		 List<Area> areas = AreaService.select(area);
-		 model.addObject("areas", areas);
+         
 		 
 		 return model;
 	 }
@@ -241,24 +227,7 @@ public class Wap1PersonController {
 	     * @Title: getChildArea
 	     * @Description: TODO(这里用一句话描述这个方法的作用)
 	     */
-	    @RequestMapping(value = "/getChildArea", method = RequestMethod.POST)
-	    public
-	    @ResponseBody
-	    Map<String, String> getChildArea(@RequestParam(value = "id") String parentid) throws JsonGenerationException, JsonMappingException,
-	            Exception {
-	        Map<String, String> map = Maps.newHashMap();
-	        Area area=new Area();
-	        area.setParentId(Long.valueOf(parentid));
-	        List<Area> areas = AreaService.select(area);
-	        String json = "null";
-	        String str[]={"areaSort"};
-	        if (areas != null && areas.size() > 0) {
-	            json = JsonUtils.toJsonStrWithExcludeProperties(areas,str);
-	        }
-	        map.put("result", json);
-	        map.put("success", "true");
-	        return map;
-	    }
+	   
 	 /**
 	  * 地址管理
 	  * @return
@@ -268,10 +237,7 @@ public class Wap1PersonController {
 		 ModelAndView model = new ModelAndView("/wap1/address");
 		 List<Address> addressList= AddressService.selectByMemberId();
 		 model.addObject("page", addressList);
-		 Area area=new Area();
-		 area.setParentId(1L);
-		 List<Area> areas = AreaService.select(area);
-		 model.addObject("areas", areas);
+		
 		 return model;
 	 }
 	 /**
@@ -289,7 +255,7 @@ public class Wap1PersonController {
 	public String saveAddress(@ModelAttribute Address address) throws Exception {
 		address.setIsDefault("0");
 		address.setMemberId(SysUserUtils.getSessionLoginUser().getId());
-		AddressService.saveAddress(address);
+		AddressService.insertSelective(address);
 		return "redirect:/person/address";
 		
 	}
@@ -309,8 +275,8 @@ public class Wap1PersonController {
 	Map<String, String> saveAddress1(@ModelAttribute Address address) throws Exception {
 		address.setIsDefault("0");
 		address.setMemberId(SysUserUtils.getSessionLoginUser().getId());
-		AddressService.saveAddress(address);
-		Map<String, String> map = Maps.newHashMap();
+		AddressService.insertSelective(address);
+		Map<String, String> map = new HashMap<>();
 		map.put("sucess", "true");
 		return map;
 		
@@ -330,7 +296,7 @@ public class Wap1PersonController {
 		public @ResponseBody
 		Map<String, String> updateDef(@RequestParam(value = "addressId") String addressId) throws Exception {
 
-			Map<String, String> map = Maps.newHashMap();
+			Map<String, String> map = new HashMap<>();
 			int result = AddressService.updateDef(addressId, SysUserUtils.getSessionLoginUser().getId().toString());
 			if(result == 1){
 				map.put("success", "true");
@@ -384,7 +350,7 @@ public class Wap1PersonController {
 					if (id != null && !id.equals("")) {
 						Order o=new Order();
 						o.setStatus(Integer.parseInt(id));
-						o.setUserid(SysUserUtils.getCacheLoginUser().getId());
+						o.setUserid(SysUserUtils.getSessionLoginUser().getId());
 						List<Order> orderList=OrderService.select(o);
 					//	request.setAttribute("imgServer", "http://image.zscat.com");
 						request.setAttribute("orderList", orderList);
@@ -495,14 +461,10 @@ public class Wap1PersonController {
 	  public ModelAndView foot(HttpServletRequest req) {
 		 ModelAndView model = new ModelAndView("/wap1/foot");
 		  String ip=IPUtils.getClientAddress(req);
-		    RedisUtils  RedisUtils=new RedisUtils();
-			Map<String,String> map=RedisUtils.hgetall(Constant.SHOPPING_HISTORY+ip);
-			List<Object> ProductList=JsonUtils.readJsonList(JsonUtils.toJsonStr(map), Product.class);
-//			for (int i=0;i<l.size();i++){
-//				String json=l.get(i);
-//				ProductList.add(JsonUtils.fromJson(json, Product.class));
-//			}
-			model.addObject("ProductList",ProductList);
+//		    RedisUtils  RedisUtils=new RedisUtils();
+//			Map<String,String> map=RedisUtils.hgetall(SysUserUtils.SHOPPING_HISTORY+ip);
+//			List<Object> ProductList=JsonUtils.readJsonList(JsonUtils.toJsonStr(map), Product.class);
+//			model.addObject("ProductList",ProductList);
 		 return model;
 	 }
 	 /**
@@ -684,7 +646,7 @@ public class Wap1PersonController {
 		 	r.setGoodsid(goodsid);r.setStatus(1);r.setUsername(SysUserUtils.getSessionLoginUser().getUsername());
 		 	r.setUserid(SysUserUtils.getSessionLoginUser().getId());
 		 	
-			Map<String, String> map = Maps.newHashMap();
+			Map<String, String> map = new HashMap<>();
 			int result = ReplyService.insertSelective(r);
 			if(result == 1){
 				map.put("success", "true");
@@ -708,7 +670,7 @@ public class Wap1PersonController {
 		 	cart.setGoodsid(goodsid);
 		 	cart.setUserid(SysUserUtils.getSessionLoginUser().getId());
 		 	Cart check=CartService.selectOne(cart);
-		 	Map<String, String> map = Maps.newHashMap();
+		 	Map<String, String> map =new HashMap<>();
 		 	int result=0;
 		 	if(check==null){
 		 		cart.setCount(1);
@@ -738,7 +700,7 @@ public class Wap1PersonController {
 		public @ResponseBody
 		Map<String, String> deleteCart(@RequestParam(value = "id") Long id) throws Exception {
 		 	CartService.deleteByPrimaryKey(id);
-		 	Map<String, String> map = Maps.newHashMap();
+		 	Map<String, String> map = new HashMap<>();
 				map.put("success", "true");
 			 return map;
 		}
@@ -752,10 +714,10 @@ public class Wap1PersonController {
 		public @ResponseBody
 		Map<String, String> deleteOrder(@RequestParam(value = "id") Long id) throws Exception {
 		 	Order o=new Order();
-		 	o.setStatus(ZsCatConstant.ORDER_NiNe);
+		 	o.setStatus(SysUserUtils.ORDER_NiNe);
 		 	o.setId(id);
 		 	OrderService.updateByPrimaryKeySelective(o);
-		 	Map<String, String> map = Maps.newHashMap();
+		 	Map<String, String> map = new HashMap<>();
 				map.put("success", "true");
 			 return map;
 		}
