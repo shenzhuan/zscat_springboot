@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-04-10 20:44:21
+Date: 2017-04-11 16:39:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -825,6 +825,83 @@ INSERT INTO `sys_user_role` VALUES ('96', '21', '31', null, null, null, null, '0
 INSERT INTO `sys_user_role` VALUES ('97', '21', '39', null, null, null, null, '0');
 
 -- ----------------------------
+-- Table structure for t_address
+-- ----------------------------
+DROP TABLE IF EXISTS `t_address`;
+CREATE TABLE `t_address` (
+  `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '地址ID',
+  `member_id` bigint(10) unsigned NOT NULL DEFAULT '0' COMMENT '会员ID',
+  `true_name` varchar(50) NOT NULL COMMENT '会员姓名',
+  `area_id` bigint(10) unsigned NOT NULL DEFAULT '0' COMMENT '地区ID',
+  `city_id` bigint(9) DEFAULT NULL COMMENT '市级ID',
+  `area_info` varchar(255) NOT NULL DEFAULT '' COMMENT '地区内容',
+  `address` varchar(255) NOT NULL COMMENT '地址',
+  `tel_phone` varchar(20) DEFAULT NULL COMMENT '座机电话',
+  `mob_phone` varchar(15) DEFAULT NULL COMMENT '手机电话',
+  `is_default` enum('0','1') NOT NULL DEFAULT '0' COMMENT '1默认收货地址',
+  `province_id` mediumint(10) DEFAULT '0' COMMENT '省级id',
+  `zip_code` int(50) DEFAULT NULL COMMENT '邮编',
+  PRIMARY KEY (`id`),
+  KEY `member_id` (`member_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8 COMMENT='买家地址信息表';
+
+-- ----------------------------
+-- Records of t_address
+-- ----------------------------
+INSERT INTO `t_address` VALUES ('21', '10', 'Daisy', '41', '36', '北京,北京市,朝阳区', 'SOHO 1105', null, '13520085712', '0', '1', null);
+INSERT INTO `t_address` VALUES ('23', '10', 'Daisy', '41', '36', '北京,北京市,朝阳区', 'SOHOnimeide', '01084420880', '13520085712', '0', '1', '0');
+INSERT INTO `t_address` VALUES ('24', '10', 'Daisy', '41', '36', '北京,北京市,朝阳区', 'SOHO5678', '0102345435', '13520083333', '1', '1', '111111');
+INSERT INTO `t_address` VALUES ('25', '10', 'Daisy', '1417', '95', '内蒙古自治区,呼和浩特市,和林格尔县', 'SOHOwangjing1105 909090', null, '13520085712', '0', '5', null);
+INSERT INTO `t_address` VALUES ('26', '10', 'Tony', '1298', '84', '山西省,太原市,万柏林区', '1109', '01083323432', '13589098788', '0', '4', '123321');
+INSERT INTO `t_address` VALUES ('29', '12', '鲍睿', '41', '36', '北京,北京市,朝阳区', '尚都soho南塔803', '18610984906', '18610984906', '0', '1', '111111');
+INSERT INTO `t_address` VALUES ('30', '13', '谢进伟', '41', '36', '北京,北京市,朝阳区', '东大桥soho南塔803', '13520085712', '13520085712', '0', '1', '10020');
+INSERT INTO `t_address` VALUES ('31', '16', 'zrh', '37', '36', '北京,北京市,东城区', 'dfuhfkjsdhfkj', '111111111', '11111111111', '1', '1', '111111');
+INSERT INTO `t_address` VALUES ('32', '14', '王明', '41', '36', '北京,北京市,朝阳区', '北京市朝阳区soho尚都', '101-23211132', '13398420124', '0', '1', '100000');
+INSERT INTO `t_address` VALUES ('35', '19', '问3', '38', '36', '北京,北京市,西城区', '33', '11122131421', '13654547041', '1', '1', '111111');
+INSERT INTO `t_address` VALUES ('36', '22', '123', '37', '36', '北京,北京市,东城区', 'tuu', '的方法', '123', '1', '1', '123');
+INSERT INTO `t_address` VALUES ('38', '105', '阿爸', '2528', '224', '山东省,青岛市,市南区', '海水浴场', '88888888', '13500000000', '0', '15', '500006');
+INSERT INTO `t_address` VALUES ('39', '28', '吴世勋', '41', '36', '北京,北京市,朝阳区', '世贸天阶soho南塔803', '88888888', '11111111111', '1', '1', '111111');
+INSERT INTO `t_address` VALUES ('40', '28', 'zrh', '143', '39', '上海,上海市,黄浦区', '黄埔66号', '9999999999', '18888888888', '0', '9', '666666');
+INSERT INTO `t_address` VALUES ('41', '7', '刘鱼凯', '38', '36', '北京,北京市,西城区', '南锣鼓巷八大胡同113号', '12342342424', '13562345564', '1', '1', '11122');
+INSERT INTO `t_address` VALUES ('43', '22', '康兰', '47', '36', '北京,北京市,通州区', '尚都会', '15363586', '18569325152', '0', '1', '253658');
+INSERT INTO `t_address` VALUES ('44', '28', 'pcl', '2146', '175', '浙江省,杭州市,西湖区', 'qweqwe22', '11111111', '11111111111', '0', '11', '22222');
+INSERT INTO `t_address` VALUES ('45', '36', '康兰', '41', '36', '北京,北京市,朝阳区', '尚都南塔803', '0102346742', '18610810207', '1', '1', '100000');
+INSERT INTO `t_address` VALUES ('46', '10', 'srttrw', '41', '36', '北京,北京市,朝阳区', 'qqqqqqqqqqqqqq', '010-23453324', '18733195969', '0', '1', '4536546');
+INSERT INTO `t_address` VALUES ('47', '45', '吴世勋', '41', '36', '北京,北京市,朝阳区', '世贸天阶SOHO南塔803', '0102222222', '18568652555', '1', '1', '250082');
+INSERT INTO `t_address` VALUES ('48', '45', '周杰伦', '2146', '175', '浙江省,杭州市,西湖区', '美胡路66 号', '0108888888', '15355353896', '0', '11', '250002');
+INSERT INTO `t_address` VALUES ('51', '47', '黄科源', '37', '36', '北京,北京市,东城区', '尚都', '010-11111111', '18601320411', '1', '1', '100000');
+INSERT INTO `t_address` VALUES ('52', '65', 'gfdsgfds', '3038', '289', '广东省,广州市,从化市', 'gfsdgfg', '22381904', '13631390449', '0', '19', '510000');
+INSERT INTO `t_address` VALUES ('53', '14', '王明', '2920', '275', '湖南省,长沙市,芙蓉区', '建湘路517号', '0731-88888888', '13900000000', '0', '18', '410001');
+INSERT INTO `t_address` VALUES ('54', '44', '11', '56', '40', '天津,天津市,河东区', '112323', '13322223333', '13322223333', '0', '2', '432123');
+INSERT INTO `t_address` VALUES ('56', '105', '222', '2609', '235', '山东省,临沂市,沂南县', '22', '1', '13333333333', '0', '15', '1');
+INSERT INTO `t_address` VALUES ('57', '70', '123123', '2916', '275', '湖南省,长沙市,岳麓区', '123123', '07727777777', '15910576548', '0', '18', '100000');
+INSERT INTO `t_address` VALUES ('58', '72', '林建茂', '41', '36', '北京,北京市,朝阳区', 'SOHO尚度', '077271111111', '15910576548', '0', '1', '100000');
+INSERT INTO `t_address` VALUES ('59', '15', '12312', '1127', '73', '河北省,石家庄市,井陉矿区', '123123', '13422222222', '13422222222', '0', '3', '144444');
+INSERT INTO `t_address` VALUES ('60', '15', 'test', '2630', '237', '山东省,聊城市,东阿县', '13423', '', '13333333333', '0', '15', '122222');
+INSERT INTO `t_address` VALUES ('61', '75', 'ddd', '56', '40', '天津,天津市,河东区', 'eedf', '123123', '12312312312', '0', '2', '433123');
+INSERT INTO `t_address` VALUES ('62', '79', 'BFF', '543', '45055', '海外,海外,荷兰', 'FAFASDFASFD', '0031234567890', '13587898765', '0', '35', '5655');
+INSERT INTO `t_address` VALUES ('63', '7', '管庆芳', '41', '36', '北京,北京市,朝阳区', '尚都SOHO南塔803', '', '18311340545', '0', '1', '10000');
+INSERT INTO `t_address` VALUES ('64', '81', 'KWG', '37', '36', '北京,北京市,东城区', 'SHANGDI', null, '18810004259', '0', '1', '100000');
+INSERT INTO `t_address` VALUES ('65', '68', '孙', '56', '40', '天津,天津市,河东区', '放烟花', null, '15010033670', '0', '2', '100043');
+INSERT INTO `t_address` VALUES ('67', '82', '张三', '41', '36', '北京,北京市,朝阳区', '朝阳大街145号', null, '13888888888', '0', '1', '153000');
+INSERT INTO `t_address` VALUES ('68', '82', '李四', '37', '36', '北京,北京市,东城区', '东城大街188号', null, '13800000000', '0', '1', '100000');
+INSERT INTO `t_address` VALUES ('69', '82', '王二', '1310', '85', '山西省,大同市,大同县', '大同街14号', null, '13800000000', '0', '4', '100000');
+INSERT INTO `t_address` VALUES ('70', '82', '张三', '42', '36', '北京,北京市,丰台区', '丰台大街146号', null, '13800000000', '0', '1', '100000');
+INSERT INTO `t_address` VALUES ('71', '82', '李四', '56', '40', '天津,天津市,河东区', '河东大街145号', null, '13800000000', '0', '2', '100000');
+INSERT INTO `t_address` VALUES ('72', '82', '李四', '1129', '73', '河北省,石家庄市,平山县', '平山街11号', null, '13800000000', '1', '3', '100000');
+INSERT INTO `t_address` VALUES ('73', '82', '李四', '37', '36', '北京,北京市,东城区', '东城大街145号', null, '13800000000', '0', '1', '100000');
+INSERT INTO `t_address` VALUES ('74', '83', '刘刚', '2523', '224', '山东省,青岛市,即墨市', 'xx街道', null, '13233445566', '0', '15', '134567');
+INSERT INTO `t_address` VALUES ('75', '88', 'aaa', '1127', '73', '河北省,石家庄市,井陉矿区', 'aaaa', null, '18538263378', '0', '3', '452009');
+INSERT INTO `t_address` VALUES ('76', '93', 'test', '1531', '107', '辽宁省,沈阳市,铁西区', 'test', null, '13898826242', '0', '6', '110167');
+INSERT INTO `t_address` VALUES ('77', '84', 'guan', '41', '36', '北京,北京市,朝阳区', '尚都SOHO南塔803', null, '18322090903', '0', '1', '100000');
+INSERT INTO `t_address` VALUES ('78', '105', '111', '41', '36', '北京,北京市,朝阳区', '1111', null, '13333333333', '0', '1', '100000');
+INSERT INTO `t_address` VALUES ('79', '96', 'lza', '56', '40', '天津,天津市,河东区', '2222', null, '18810028190', '0', '2', '100000');
+INSERT INTO `t_address` VALUES ('80', '97', 'lza', '41', '36', '北京,北京市,朝阳区', '还不发货我无法和', null, '18810028190', '0', '1', '111111');
+INSERT INTO `t_address` VALUES ('81', '101', 'zhuan1', '3146', '307', '广东省,潮州市,湘桥区', 'xxx', null, '15989289511', '0', '19', '121212');
+INSERT INTO `t_address` VALUES ('82', '100', 'shenzhuan', '3028', '288', '湖南省,湘西土家族苗族自治州,保靖县', '21', '12121121212', '12121212121', '0', '18', '212212');
+INSERT INTO `t_address` VALUES ('83', '105', '555', '55', '40', '天津天津市和平区', '555555', '5555', null, '1', '0', null);
+
+-- ----------------------------
 -- Table structure for t_blog
 -- ----------------------------
 DROP TABLE IF EXISTS `t_blog`;
@@ -959,6 +1036,25 @@ INSERT INTO `t_blog_template` VALUES ('120', '草根博客', '', '2016-10-28 11:
 INSERT INTO `t_blog_template` VALUES ('121', 'java1234', '', '2016-10-28 11:05:32', '0', '0', '<p><img src=\"/pig/static/ueditor/jsp/upload1/20161028/61671477623928764.png\" title=\"QQ图片20161028110509.png\"/></p>,', 'front/blog/index');
 
 -- ----------------------------
+-- Table structure for t_cart
+-- ----------------------------
+DROP TABLE IF EXISTS `t_cart`;
+CREATE TABLE `t_cart` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `goodsid` bigint(20) DEFAULT NULL,
+  `userid` bigint(20) DEFAULT NULL,
+  `goodsname` varchar(255) DEFAULT NULL,
+  `price` varchar(10) DEFAULT NULL,
+  `count` int(11) DEFAULT NULL COMMENT '1',
+  `img` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_cart
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for t_comment
 -- ----------------------------
 DROP TABLE IF EXISTS `t_comment`;
@@ -984,6 +1080,195 @@ INSERT INTO `t_comment` VALUES ('3', '0:0:0:0:0:0:0:1', '122', '我来回得zaca
 INSERT INTO `t_comment` VALUES ('4', '0:0:0:0:0:0:0:1', '118', '123456', '2017-04-10 20:05:57', null, null, 'zscat11111', null);
 
 -- ----------------------------
+-- Table structure for t_consult
+-- ----------------------------
+DROP TABLE IF EXISTS `t_consult`;
+CREATE TABLE `t_consult` (
+  `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '咨询编号',
+  `goods_id` bigint(11) unsigned DEFAULT '0' COMMENT '商品编号',
+  `cgoods_name` varchar(100) NOT NULL COMMENT '商品名称',
+  `member_id` bigint(11) NOT NULL DEFAULT '0' COMMENT '咨询发布者会员编号(0：游客)',
+  `cmember_name` varchar(100) DEFAULT NULL COMMENT '会员名称',
+  `store_id` bigint(11) unsigned NOT NULL DEFAULT '0' COMMENT '店铺编号',
+  `email` varchar(255) DEFAULT NULL COMMENT '咨询发布者邮箱',
+  `consult_content` varchar(255) DEFAULT NULL COMMENT '咨询内容',
+  `consult_addtime` bigint(13) DEFAULT NULL COMMENT '咨询添加时间',
+  `consult_reply` varchar(255) DEFAULT NULL COMMENT '咨询回复内容',
+  `consult_reply_time` bigint(13) DEFAULT NULL COMMENT '咨询回复时间',
+  `isanonymous` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0表示不匿名 1表示匿名',
+  `is_del` tinyint(1) DEFAULT NULL,
+  `create_time` bigint(13) DEFAULT NULL COMMENT '创建时间',
+  `update_time` bigint(13) DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`),
+  KEY `goods_id` (`goods_id`) USING BTREE,
+  KEY `seller_id` (`store_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='产品咨询表';
+
+-- ----------------------------
+-- Records of t_consult
+-- ----------------------------
+INSERT INTO `t_consult` VALUES ('4', '4', 'æäºå¨åè³æº', '5', 'gyh99', '10', null, 'è¿ä¸ªè³æºå¤å°é±', '20150803102942', '你的麻烦你给return ', null, '0', '0', null, null);
+INSERT INTO `t_consult` VALUES ('5', '30', '可情小美 欧美范春夏款时尚OL职业女超高跟鞋 糖果色漆皮尖头夜店性感', '0', '匿名', '9', null, '1111', '20150822101401', null, null, '1', '0', null, null);
+INSERT INTO `t_consult` VALUES ('6', '30', '可情小美 欧美范春夏款时尚OL职业女超高跟鞋 糖果色漆皮尖头夜店性感', '0', '匿名', '9', null, '你好', '20150822101414', null, null, '1', '0', null, null);
+INSERT INTO `t_consult` VALUES ('7', '36', ' 琪可朵高跟鞋尖头真皮蝴蝶结2015新款婚鞋  01甜美粉色 ', '0', '匿名', '9', null, '[', '20150827205953', null, null, '1', '0', null, null);
+INSERT INTO `t_consult` VALUES ('8', '5', 'iphone6', '28', '吴世勋', '10', null, '是国行吗？', '20150831142848', '是的哦，亲~~', null, '0', '0', null, null);
+INSERT INTO `t_consult` VALUES ('9', '32', '琪可朵高跟鞋尖头真皮细跟蝴蝶结2015新款女鞋 03淡紫色 40', '28', '吴世勋', '9', null, '紫色色差大吗？是什么紫色？', '20150901093741', null, null, '0', '0', null, null);
+INSERT INTO `t_consult` VALUES ('10', '32', '琪可朵高跟鞋尖头真皮细跟蝴蝶结2015新款女鞋 03淡紫色 40', '28', '吴世勋', '9', null, '对方水电费', '20150906165708', null, null, '0', '1', null, null);
+INSERT INTO `t_consult` VALUES ('11', '32', '琪可朵高跟鞋尖头真皮细跟蝴蝶结2015新款女鞋 03淡紫色 40', '28', '吴世勋', '9', null, '双方的所发生的', '20150906165714', null, null, '0', '1', null, null);
+INSERT INTO `t_consult` VALUES ('12', '26', ' 凡牧2015夏装新款棉麻短袖连衣裙女韩版修身', '16', 'zrh', '9', null, '裙子如何', '20150906165850', '保证正品哦，亲', null, '0', '0', null, null);
+INSERT INTO `t_consult` VALUES ('13', '25', '碧月茹香 2015夏新款文艺棉麻宽松大码连衣裙 617绿色 XXL', '0', '匿名', '9', null, 'ddd', '20150924095004', null, null, '1', '0', '20150924095004', null);
+INSERT INTO `t_consult` VALUES ('14', '25', '碧月茹香 2015夏新款文艺棉麻宽松大码连衣裙 617绿色 XXL', '0', '匿名', '9', null, 'sfsf', '20150924095012', null, null, '1', '0', '20150924095012', null);
+INSERT INTO `t_consult` VALUES ('15', '11', 'Apple MacBook Air MJVE2CH/A 13.3英寸宽屏笔记本电脑 128GB 闪存', '14', 'demo', '9', null, '啊实打实', '20151008165249', null, null, '0', '0', '20151008165249', null);
+INSERT INTO `t_consult` VALUES ('16', '11', 'Apple MacBook Air MJVE2CH/A 13.3��?��?��?????��????��?��?????�̨�?? 128GB ��?a?-?', '0', '匿名', '9', null, null, '20151008165249', null, null, '1', '0', '20151008165249', null);
+INSERT INTO `t_consult` VALUES ('17', '72', '111', '0', '匿名', '9', null, 'ni hao', '20151009142454', '2123123', '1444704656508', '1', '0', '20151009142454', '1444704656508');
+INSERT INTO `t_consult` VALUES ('18', '76', 'sony', '14', 'demo', '12', null, '11111', '20151010103337', null, null, '0', '0', '20151010103337', null);
+INSERT INTO `t_consult` VALUES ('19', '35', ' bubufeifei2015夏季新款高跟鞋女 水钻细跟女鞋婚鞋单鞋 珍珠白', '84', 'guan2015', '9', null, 'ghijvbghj空调同 宋瑞', '20151016094325', null, null, '0', '0', '20151016094325', null);
+INSERT INTO `t_consult` VALUES ('20', '35', ' bubufeifei2015夏季新款高跟鞋女 水钻细跟女鞋婚鞋单鞋 珍珠白', '84', 'guan2015', '9', null, '心狠我我你为了她你同同虐酷我同他们拉我', '20151016094359', null, null, '0', '0', '20151016094359', null);
+
+-- ----------------------------
+-- Table structure for t_favorites
+-- ----------------------------
+DROP TABLE IF EXISTS `t_favorites`;
+CREATE TABLE `t_favorites` (
+  `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '会员ID',
+  `fav_id` bigint(10) unsigned NOT NULL COMMENT '收藏ID',
+  `fav_type` varchar(20) DEFAULT NULL COMMENT '收藏类型',
+  `fav_time` bigint(13) DEFAULT NULL COMMENT '收藏时间',
+  `member_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='买家收藏表';
+
+-- ----------------------------
+-- Records of t_favorites
+-- ----------------------------
+INSERT INTO `t_favorites` VALUES ('1', '5', null, null, '105');
+INSERT INTO `t_favorites` VALUES ('2', '6', null, null, '105');
+
+-- ----------------------------
+-- Table structure for t_floor
+-- ----------------------------
+DROP TABLE IF EXISTS `t_floor`;
+CREATE TABLE `t_floor` (
+  `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '类型id',
+  `name` varchar(100) DEFAULT NULL COMMENT '类型名称',
+  `typesort` int(3) DEFAULT '0' COMMENT '商品类型排序',
+  `parent_id` bigint(10) DEFAULT NULL COMMENT '父id',
+  `parent_ids` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `del_flag` varchar(255) DEFAULT NULL,
+  `advimg` varchar(255) DEFAULT NULL,
+  `advurl` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='商品类型表';
+
+-- ----------------------------
+-- Records of t_floor
+-- ----------------------------
+INSERT INTO `t_floor` VALUES ('1', 'zsCat系列', '0', '0', null, '每一个zscat项目都有一个故事,每一个zscat项目都有一个故事', null, 'main.png', '');
+INSERT INTO `t_floor` VALUES ('3', 'demo', '3', null, null, 'demole,demole', null, 'sys.png', null);
+
+-- ----------------------------
+-- Table structure for t_floor_product
+-- ----------------------------
+DROP TABLE IF EXISTS `t_floor_product`;
+CREATE TABLE `t_floor_product` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `productid` bigint(20) DEFAULT NULL,
+  `floorid` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_floor_product
+-- ----------------------------
+INSERT INTO `t_floor_product` VALUES ('15', '34', '1');
+INSERT INTO `t_floor_product` VALUES ('16', '33', '1');
+INSERT INTO `t_floor_product` VALUES ('17', '36', '1');
+INSERT INTO `t_floor_product` VALUES ('18', '35', '1');
+INSERT INTO `t_floor_product` VALUES ('19', '37', '1');
+INSERT INTO `t_floor_product` VALUES ('20', '38', '1');
+INSERT INTO `t_floor_product` VALUES ('27', '39', '3');
+INSERT INTO `t_floor_product` VALUES ('28', '40', '3');
+INSERT INTO `t_floor_product` VALUES ('29', '41', '3');
+INSERT INTO `t_floor_product` VALUES ('30', '43', '3');
+INSERT INTO `t_floor_product` VALUES ('31', '44', '3');
+INSERT INTO `t_floor_product` VALUES ('32', '35', '3');
+
+-- ----------------------------
+-- Table structure for t_goodsorder
+-- ----------------------------
+DROP TABLE IF EXISTS `t_goodsorder`;
+CREATE TABLE `t_goodsorder` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `goodsid` bigint(20) DEFAULT NULL,
+  `orderid` bigint(20) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_goodsorder
+-- ----------------------------
+INSERT INTO `t_goodsorder` VALUES ('3', '36', '4', null);
+INSERT INTO `t_goodsorder` VALUES ('4', '35', '7', null);
+INSERT INTO `t_goodsorder` VALUES ('5', '36', '8', null);
+INSERT INTO `t_goodsorder` VALUES ('6', '34', '9', null);
+INSERT INTO `t_goodsorder` VALUES ('7', '34', '10', null);
+INSERT INTO `t_goodsorder` VALUES ('8', '33', '11', null);
+INSERT INTO `t_goodsorder` VALUES ('9', '34', '12', null);
+INSERT INTO `t_goodsorder` VALUES ('10', '34', '13', null);
+INSERT INTO `t_goodsorder` VALUES ('11', '34', '14', null);
+INSERT INTO `t_goodsorder` VALUES ('12', '34', '15', null);
+INSERT INTO `t_goodsorder` VALUES ('13', '36', '16', null);
+INSERT INTO `t_goodsorder` VALUES ('14', '36', '17', null);
+INSERT INTO `t_goodsorder` VALUES ('15', '36', '18', null);
+INSERT INTO `t_goodsorder` VALUES ('16', '34', '19', null);
+INSERT INTO `t_goodsorder` VALUES ('17', '35', '20', null);
+INSERT INTO `t_goodsorder` VALUES ('18', '34', '22', null);
+INSERT INTO `t_goodsorder` VALUES ('19', '36', '23', null);
+INSERT INTO `t_goodsorder` VALUES ('20', '36', '24', null);
+INSERT INTO `t_goodsorder` VALUES ('21', '36', '25', null);
+INSERT INTO `t_goodsorder` VALUES ('22', '35', '26', null);
+INSERT INTO `t_goodsorder` VALUES ('23', '36', '27', null);
+INSERT INTO `t_goodsorder` VALUES ('24', '36', '28', null);
+INSERT INTO `t_goodsorder` VALUES ('25', '33', '31', null);
+INSERT INTO `t_goodsorder` VALUES ('26', '34', '32', null);
+INSERT INTO `t_goodsorder` VALUES ('27', '33', '33', null);
+INSERT INTO `t_goodsorder` VALUES ('28', '36', '33', null);
+INSERT INTO `t_goodsorder` VALUES ('29', '35', '37', null);
+INSERT INTO `t_goodsorder` VALUES ('30', '36', '38', null);
+INSERT INTO `t_goodsorder` VALUES ('31', '34', '39', null);
+INSERT INTO `t_goodsorder` VALUES ('32', '35', '40', null);
+INSERT INTO `t_goodsorder` VALUES ('33', '35', '41', null);
+INSERT INTO `t_goodsorder` VALUES ('34', '35', '42', null);
+INSERT INTO `t_goodsorder` VALUES ('35', '34', '43', null);
+INSERT INTO `t_goodsorder` VALUES ('36', '34', '44', null);
+INSERT INTO `t_goodsorder` VALUES ('37', '36', '45', null);
+INSERT INTO `t_goodsorder` VALUES ('38', '35', '46', null);
+INSERT INTO `t_goodsorder` VALUES ('39', '36', '47', null);
+INSERT INTO `t_goodsorder` VALUES ('40', '33', '48', null);
+INSERT INTO `t_goodsorder` VALUES ('41', '33', '49', null);
+INSERT INTO `t_goodsorder` VALUES ('42', '35', '50', null);
+INSERT INTO `t_goodsorder` VALUES ('43', '33', '51', null);
+INSERT INTO `t_goodsorder` VALUES ('44', '33', '52', null);
+INSERT INTO `t_goodsorder` VALUES ('45', '33', '53', null);
+INSERT INTO `t_goodsorder` VALUES ('46', '35', '54', null);
+INSERT INTO `t_goodsorder` VALUES ('47', '33', '56', null);
+INSERT INTO `t_goodsorder` VALUES ('48', '33', '57', null);
+INSERT INTO `t_goodsorder` VALUES ('49', '34', '58', null);
+INSERT INTO `t_goodsorder` VALUES ('50', '36', null, null);
+INSERT INTO `t_goodsorder` VALUES ('51', '34', null, null);
+INSERT INTO `t_goodsorder` VALUES ('52', '33', null, null);
+INSERT INTO `t_goodsorder` VALUES ('53', '33', null, null);
+INSERT INTO `t_goodsorder` VALUES ('54', '33', null, null);
+INSERT INTO `t_goodsorder` VALUES ('55', '34', null, null);
+INSERT INTO `t_goodsorder` VALUES ('56', '34', null, null);
+INSERT INTO `t_goodsorder` VALUES ('57', '33', null, null);
+INSERT INTO `t_goodsorder` VALUES ('58', '33', null, null);
+INSERT INTO `t_goodsorder` VALUES ('59', '33', null, null);
+INSERT INTO `t_goodsorder` VALUES ('60', '33', null, null);
+
+-- ----------------------------
 -- Table structure for t_link
 -- ----------------------------
 DROP TABLE IF EXISTS `t_link`;
@@ -1004,3 +1289,295 @@ INSERT INTO `t_link` VALUES ('3', 'zscat内容管理系统', 'https://shop150554
 INSERT INTO `t_link` VALUES ('4', 'zscat后台', 'http://zscat.top/', '4');
 INSERT INTO `t_link` VALUES ('5', 'dangdang', 'http://blog.csdn.net/a1439226817/article/details/64437915', '5');
 INSERT INTO `t_link` VALUES ('6', 'zscat店铺', 'https://shop150554856.taobao.com/?spm=2013.1.1000126.d21.yzAhaP', '6');
+
+-- ----------------------------
+-- Table structure for t_member
+-- ----------------------------
+DROP TABLE IF EXISTS `t_member`;
+CREATE TABLE `t_member` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) DEFAULT NULL COMMENT '姓名',
+  `password` varchar(255) DEFAULT NULL COMMENT '密码',
+  `addtime` datetime DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `qq` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `trueName` varchar(255) DEFAULT NULL,
+  `gold` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_member
+-- ----------------------------
+INSERT INTO `t_member` VALUES ('1', '9795ed18-02c4-4624-a0c7-1619cfd3f692.jpg', '111', '2016-11-01 00:00:00', null, null, null, null, null, null, null);
+INSERT INTO `t_member` VALUES ('2', '56e9113e-42e0-4262-a841-a98c3725adc0.jpg', 'xxxx', '2016-11-16 00:00:00', null, null, null, null, null, null, null);
+INSERT INTO `t_member` VALUES ('3', 'fbb4679e-6df1-4893-abd4-66b2dabbe45e.jpg', '111', '2016-11-02 00:00:00', null, null, null, null, null, null, null);
+INSERT INTO `t_member` VALUES ('4', '3a5f3d94-00cb-46d6-a11b-dac7fdf6bfd6.png', '22', '2016-11-09 00:00:00', null, null, null, null, null, null, null);
+INSERT INTO `t_member` VALUES ('5', '7bb95469-9649-4bf9-b58d-d34a4a4cd3bb.jpg', '11', '2016-11-01 00:00:00', null, null, null, null, null, null, null);
+INSERT INTO `t_member` VALUES ('6', '90748514-bda3-4017-a60d-8f5968b91f73.jpg', '111', '2016-11-02 00:00:00', null, null, null, null, null, null, null);
+
+-- ----------------------------
+-- Table structure for t_order
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order`;
+CREATE TABLE `t_order` (
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `totalprice` decimal(10,0) DEFAULT NULL COMMENT '总价格',
+  `totalcount` int(255) DEFAULT NULL COMMENT '总个数',
+  `ordersn` varchar(255) DEFAULT NULL,
+  `status` int(255) DEFAULT '1' COMMENT '1',
+  `userid` bigint(11) DEFAULT NULL,
+  `createdate` datetime DEFAULT NULL,
+  `paymentid` bigint(11) DEFAULT NULL,
+  `addressid` bigint(20) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `usercontent` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_order
+-- ----------------------------
+INSERT INTO `t_order` VALUES ('53', '22', '1', 'e5f621e2-e601-46bd-a', '1', '4', '2017-01-13 23:30:50', '2', '1', 'shen', '1');
+INSERT INTO `t_order` VALUES ('54', '22', '1', '83d8be8c-f12f-4f92-a2db', '2', '4', '2017-01-13 23:35:25', '1', '1', 'shen', '1');
+INSERT INTO `t_order` VALUES ('56', '11', '1', '03122304-63f0-42f7-', '3', '4', '2017-01-13 23:39:13', '2', '1', 'shen', '1');
+INSERT INTO `t_order` VALUES ('57', '2', '1', '58d1fec3-3709-4c8a-ad02', '4', '4', '2017-01-13 23:51:41', '2', '1', 'shen', '1');
+INSERT INTO `t_order` VALUES ('58', '0', '1', 'd373e88a-b338-4c7d-8453', '9', '4', '2017-01-14 10:04:27', '1', '1', 'shen', '1');
+INSERT INTO `t_order` VALUES ('60', '0', '1', 'df8f27e0-d32b-445a-', '2', '4', '2017-01-14 11:20:23', '1', '1', 'shen', '1');
+
+-- ----------------------------
+-- Table structure for t_order_log
+-- ----------------------------
+DROP TABLE IF EXISTS `t_order_log`;
+CREATE TABLE `t_order_log` (
+  `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT '订单处理历史索引id',
+  `order_id` bigint(11) NOT NULL COMMENT '订单id',
+  `order_state` varchar(20) NOT NULL COMMENT '订单状态信息',
+  `change_state` varchar(20) DEFAULT NULL COMMENT '下一步订单状态信息',
+  `state_info` varchar(20) NOT NULL COMMENT '订单状态描述',
+  `create_time` bigint(13) DEFAULT NULL COMMENT '处理时间',
+  `operator` varchar(30) NOT NULL COMMENT '操作人',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=845 DEFAULT CHARSET=utf8 COMMENT='订单处理历史表';
+
+-- ----------------------------
+-- Records of t_order_log
+-- ----------------------------
+INSERT INTO `t_order_log` VALUES ('788', '4', '1', null, '提交订单', '1483803815006', 'shen');
+INSERT INTO `t_order_log` VALUES ('791', '7', '1', null, '提交订单', '1483804513480', 'shen');
+INSERT INTO `t_order_log` VALUES ('792', '8', '1', null, '提交订单', '1483804583773', 'shen');
+INSERT INTO `t_order_log` VALUES ('793', '9', '1', null, '提交订单', '1483804663554', 'shen');
+INSERT INTO `t_order_log` VALUES ('794', '10', '1', null, '提交订单', '1483804723362', 'shen');
+INSERT INTO `t_order_log` VALUES ('795', '11', '1', null, '提交订单', '1483805141748', 'shen');
+INSERT INTO `t_order_log` VALUES ('796', '12', '1', null, '提交订单', '1483805551294', 'shen');
+INSERT INTO `t_order_log` VALUES ('797', '13', '1', null, '提交订单', '1483805853705', 'shen');
+INSERT INTO `t_order_log` VALUES ('798', '14', '1', null, '提交订单', '1483806080232', 'shen');
+INSERT INTO `t_order_log` VALUES ('799', '15', '1', null, '提交订单', '1483806374875', 'shen');
+INSERT INTO `t_order_log` VALUES ('800', '16', '1', null, '提交订单', '1484046509585', 'shen');
+INSERT INTO `t_order_log` VALUES ('801', '17', '1', null, '提交订单', '1484046722016', 'shen');
+INSERT INTO `t_order_log` VALUES ('802', '18', '1', null, '提交订单', '1484046800575', 'shen');
+INSERT INTO `t_order_log` VALUES ('803', '19', '1', null, '提交订单', '1484048320003', 'shen');
+INSERT INTO `t_order_log` VALUES ('804', '20', '1', null, '提交订单', '1484049300946', 'shen');
+INSERT INTO `t_order_log` VALUES ('806', '22', '1', null, '提交订单', '1484049828047', 'shen');
+INSERT INTO `t_order_log` VALUES ('807', '23', '1', null, '提交订单', '1484049913398', 'shen');
+INSERT INTO `t_order_log` VALUES ('808', '24', '1', null, '提交订单', '1484050043597', 'shen');
+INSERT INTO `t_order_log` VALUES ('809', '25', '1', null, '提交订单', '1484050307631', 'shen');
+INSERT INTO `t_order_log` VALUES ('810', '26', '1', null, '提交订单', '1484051296588', 'shen');
+INSERT INTO `t_order_log` VALUES ('811', '27', '1', null, '提交订单', '1484051412266', 'shen');
+INSERT INTO `t_order_log` VALUES ('812', '28', '1', null, '提交订单', '1484051500695', 'shen');
+INSERT INTO `t_order_log` VALUES ('815', '31', '1', null, '提交订单', '1484051703553', 'shen');
+INSERT INTO `t_order_log` VALUES ('816', '32', '1', null, '提交订单', '1484051802388', 'shen');
+INSERT INTO `t_order_log` VALUES ('817', '33', '1', null, '提交订单', '1484315540959', 'shen');
+INSERT INTO `t_order_log` VALUES ('821', '37', '1', null, '提交订单', '1484315841469', 'shen');
+INSERT INTO `t_order_log` VALUES ('822', '38', '1', null, '提交订单', '1484316076083', 'shen');
+INSERT INTO `t_order_log` VALUES ('823', '39', '1', null, '提交订单', '1484316264682', 'shen');
+INSERT INTO `t_order_log` VALUES ('824', '40', '1', null, '提交订单', '1484316439996', 'shen');
+INSERT INTO `t_order_log` VALUES ('825', '41', '1', null, '提交订单', '1484316625413', 'shen');
+INSERT INTO `t_order_log` VALUES ('826', '42', '1', null, '提交订单', '1484317764499', 'shen');
+INSERT INTO `t_order_log` VALUES ('827', '43', '1', null, '提交订单', '1484318223678', 'shen');
+INSERT INTO `t_order_log` VALUES ('828', '44', '1', null, '提交订单', '1484318491706', 'shen');
+INSERT INTO `t_order_log` VALUES ('829', '45', '1', null, '提交订单', '1484318617169', 'shen');
+INSERT INTO `t_order_log` VALUES ('830', '46', '1', null, '提交订单', '1484318928232', 'shen');
+INSERT INTO `t_order_log` VALUES ('831', '47', '1', null, '提交订单', '1484320745393', 'shen');
+INSERT INTO `t_order_log` VALUES ('832', '48', '1', null, '提交订单', '1484320800712', 'shen');
+INSERT INTO `t_order_log` VALUES ('833', '49', '1', null, '提交订单', '1484320847486', 'shen');
+INSERT INTO `t_order_log` VALUES ('834', '50', '1', null, '提交订单', '1484321146204', 'shen');
+INSERT INTO `t_order_log` VALUES ('835', '51', '1', null, '提交订单', '1484321308134', 'shen');
+INSERT INTO `t_order_log` VALUES ('836', '52', '1', null, '提交订单', '1484321360583', 'shen');
+INSERT INTO `t_order_log` VALUES ('837', '53', '1', null, '提交订单', '1484321450966', 'shen');
+INSERT INTO `t_order_log` VALUES ('838', '54', '1', null, '提交订单', '1484321725223', 'shen');
+INSERT INTO `t_order_log` VALUES ('840', '56', '1', null, '提交订单', '1484321953147', 'shen');
+INSERT INTO `t_order_log` VALUES ('841', '57', '1', null, '提交订单', '1484322701812', 'shen');
+INSERT INTO `t_order_log` VALUES ('842', '58', '1', null, '提交订单', '1484359467424', 'shen');
+INSERT INTO `t_order_log` VALUES ('844', '60', '1', null, '提交订单', '1484364023272', 'shen');
+
+-- ----------------------------
+-- Table structure for t_payment
+-- ----------------------------
+DROP TABLE IF EXISTS `t_payment`;
+CREATE TABLE `t_payment` (
+  `id` bigint(1) unsigned NOT NULL AUTO_INCREMENT COMMENT '支付索引id',
+  `payment_code` char(10) NOT NULL COMMENT '支付代码名称',
+  `payment_name` char(10) NOT NULL COMMENT '支付名称',
+  `payment_config` text COMMENT '支付接口配置信息',
+  `payment_state` enum('0','1') DEFAULT NULL COMMENT '接口状态0禁用1启用',
+  `is_del` tinyint(4) DEFAULT '0' COMMENT '是否删除0:未删除;1:已删除',
+  `create_time` bigint(13) DEFAULT NULL COMMENT '创建时间',
+  `update_time` bigint(13) DEFAULT NULL COMMENT '修改时间',
+  `payment_logo` varchar(55) DEFAULT NULL COMMENT '支付方式logo',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='支付方式表';
+
+-- ----------------------------
+-- Records of t_payment
+-- ----------------------------
+INSERT INTO `t_payment` VALUES ('4', 'HDFK', '货到付款', null, '0', '0', null, '1477439942147', '/upload/img/paymentlogo/1472811585098.jpg');
+INSERT INTO `t_payment` VALUES ('5', 'ZFB', '支付宝', null, '1', '1', null, '1471342291209', '/upload/img/paymentlogo/1444315841296png');
+INSERT INTO `t_payment` VALUES ('6', 'CFT', '财付通', null, '0', '1', null, '1472811599287', '/upload/img/paymentlogo/1472811598068.jpg');
+INSERT INTO `t_payment` VALUES ('7', 'YL', '银联', null, '0', '1', null, '1477560997884', '/upload/img/paymentlogo/1438941545519.jpg');
+INSERT INTO `t_payment` VALUES ('8', 'YCK', '预存款', null, '0', '0', null, '1477560976598', '/upload/img/paymentlogo/1472811617333.jpg');
+INSERT INTO `t_payment` VALUES ('9', 'wx', '微信支付', null, '0', '1', '1472810647292', '1477439911735', '/upload/img/paymentlogo/1477439826026.png');
+INSERT INTO `t_payment` VALUES ('10', 'weiscan', '微信支付', null, '1', '0', '1477439891594', null, '/upload/img/paymentlogo/1477439889314.png');
+INSERT INTO `t_payment` VALUES ('11', 'YL', '银联', null, '1', '0', '1477561111787', '1477561183135', '/upload/img/paymentlogo/1477561141382.jpg');
+
+-- ----------------------------
+-- Table structure for t_product
+-- ----------------------------
+DROP TABLE IF EXISTS `t_product`;
+CREATE TABLE `t_product` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `tag` varchar(255) DEFAULT NULL,
+  `remark` longtext,
+  `summary` longtext,
+  `clickHit` int(255) DEFAULT '0' COMMENT '0',
+  `typeid` bigint(255) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `typename` varchar(255) DEFAULT NULL,
+  `type` bigint(255) DEFAULT NULL,
+  `orderby` varchar(255) DEFAULT NULL,
+  `prices` varchar(255) DEFAULT NULL,
+  `imgmore` varchar(1000) DEFAULT NULL,
+  `create_by` bigint(64) DEFAULT NULL COMMENT '创建者',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `del_flag` char(1) DEFAULT '0' COMMENT '删除标记(0活null 正常 1,删除)',
+  `replyhit` int(11) DEFAULT '0' COMMENT '评价量',
+  `sellhit` int(11) DEFAULT '0' COMMENT '销售量',
+  `iscom` int(255) DEFAULT NULL COMMENT '1推荐，2不推荐',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_product
+-- ----------------------------
+INSERT INTO `t_product` VALUES ('33', 'zscat分布式框架', 'spring,springmvc ,通用mapper, dubbo,zookeep', '<p style=\"margin-top: 1.12em; margin-bottom: 1.12em; margin-left: 42pt; padding: 0px; text-indent: 21pt;\">开源分布式框架zsCat 559182393</p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; margin-left: 42pt; padding: 0px; text-indent: 21pt;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2nOAEpXXXXXXOXFXXXXXXXXXX_!!2541510480.png\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2MmkOpXXXXXcBXpXXXXXXXXXX_!!2541510480.png\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2Qwi2oVXXXXcCXpXXXXXXXXXX_!!2541510480.png\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2FLC5oVXXXXb.XpXXXXXXXXXX_!!2541510480.png\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB2WwzyoVXXXXblXXXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"554\" height=\"314\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB2R9LyoVXXXXbcXXXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"553\" height=\"415\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB2crHzoVXXXXa0XXXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"553\" height=\"290\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2nsu2oVXXXXcFXpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"553\" height=\"232\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB283y3oVXXXXcAXpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"554\" height=\"281\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB2hEndoVXXXXaeXpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"554\" height=\"317\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB2hffmoVXXXXc3XXXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"554\" height=\"396\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB2VF11oVXXXXcvXpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"554\" height=\"93\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB2oSHboVXXXXaEXpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"554\" height=\"102\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB2eEPXoVXXXXaYXpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"554\" height=\"289\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB2k7bxoVXXXXa.XXXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1362\" height=\"582\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2SorfoVXXXXX0XpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1364\" height=\"610\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2tYK6oVXXXXb2XpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1364\" height=\"580\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB23U5ZoVXXXXcAXpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1364\" height=\"580\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB2mDrnoVXXXXcFXXXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1361\" height=\"696\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB2RfraoVXXXXarXpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1364\" height=\"699\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB2qwjgoVXXXXX5XpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1360\" height=\"586\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB2uvYloVXXXXXXXpXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1362\" height=\"582\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB2wCvsoVXXXXbWXXXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1364\" height=\"610\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2xd2noVXXXXcOXXXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1363\" height=\"592\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB27AWSoVXXXXX5XFXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1364\" height=\"580\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB2dKiWoVXXXXXcXFXXXXXXXXXX_!!2541510480.png\" class=\"\" width=\"1356\" height=\"585\" style=\"border: 0px; vertical-align: top;\"/></p><h5 style=\"margin: 0px 0px 0px 10px; padding: 0px; font-size: 15px; height: 22px;\">邻家好货</h5><p><br/></p>,', '开源分布式框架zsCat 559182393邻家好货', '189', '11', 'zscat.png', '框架', '246', null, '50', 'https://img.alicdn.com/imgextra/i1/2541510480/TB2nOAEpXXXXXXOXFXXXXXXXXXX_!!2541510480.png,https://img.alicdn.com/imgextra/i1/2541510480/TB2MmkOpXXXXXcBXpXXXXXXXXXX_!!2541510480.png,https://img.alicdn.com/imgextra/i1/2541510480/TB2Qwi2oVXXXXcCXpXXXXXXXXXX_!!2541510480.png,', '2', '2016-12-23 12:07:18', '0', '0', '0', null);
+INSERT INTO `t_product` VALUES ('34', 'zscat商城', 'mybatisplus ,ssm,dubbo', '<p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\">qq &nbsp;951449465</p><p>dubbo 权限设计，spring，springmvc ，mybatis，beetl &nbsp;sso &nbsp;solr搜索引擎 &nbsp; &nbsp; &nbsp; &nbsp;演示地址 &nbsp;http://zscat.carp.mopaasapp.com/login http://shop.zscat&nbsp;</p><p>开源分布式框架zsCat 559182393</p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; margin-left: 42pt; padding: 0px; text-indent: 21pt;\"><br/></p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; margin-left: 42pt; padding: 0px; text-indent: 21pt;\">开源分布式框架zsCat 559182393</p><p>&nbsp;1.技术关键字&nbsp;如&nbsp;redis、dubbo&nbsp;等<br/>2.服务关键字&nbsp;如&nbsp;商品，商城，电商等<br/>3.关联关键字&nbsp;&nbsp;如分布式，购物网，外包，商城私活<br/>等&nbsp;</p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><span style=\"font-family: 宋体; font-size: 10.5pt;\">zsCat&nbsp;<span style=\"font-family:宋体\">多用户 多商家模式商城</span></span><span style=\"font-family: 宋体; font-size: 10.5pt;\"></span></p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><span style=\"font-family: 宋体; font-size: 10.5pt;\">java shiro Spring springmvc &nbsp;mybatis mybatis-plus &nbsp;redis rabbitmq</span><span style=\"font-size: 10.5pt; line-height: 1.5; font-family: 宋体;\"><span style=\"font-family:宋体\">将服务提出来，预留</span></span><span style=\"font-size: 10.5pt; line-height: 1.5; font-family: 宋体;\">dubbo&nbsp;<span style=\"font-family:宋体\">分布式服务结构</span></span></p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><span style=\"font-size: 10.5pt; line-height: 1.5; font-family: 宋体;\"><span style=\"font-family:宋体\"></span></span></p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><span style=\"font-size: 10.5pt; line-height: 1.5; font-family: 宋体;\"><span style=\"font-family:宋体\"></span></span></p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><span style=\"font-size: 10.5pt; line-height: 1.5; font-family: 宋体;\"><span style=\"font-family:宋体\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2CnxvXZwb61Bjy0FfXXXvlpXa_!!2541510480.png\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB27jdzX_ga61BjSspiXXXUSXXa_!!2541510480.png\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2GDtvXZwb61Bjy0FfXXXvlpXa_!!2541510480.png\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB28X4yXZIa61Bjy0FiXXc1XpXa_!!2541510480.png\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB2x3JAXZga61Bjy1XaXXafzVXa_!!2541510480.png\" class=\"\" width=\"683\" height=\"384\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB2zHxxXZsX61Bjy1XdXXa0aFXa_!!2541510480.png\" class=\"\" width=\"222\" height=\"623\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB2uzlyX_ga61BjSspfXXadSpXa_!!2541510480.png\" class=\"\" width=\"683\" height=\"384\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB2f3FAXZga61Bjy1XaXXafzVXa_!!2541510480.png\" class=\"\" width=\"683\" height=\"384\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB2QENyX4IX61BjSsplXXazrpXa_!!2541510480.png\" class=\"\" width=\"683\" height=\"384\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB2btdzX_gX61BjSspmXXaFcFXa_!!2541510480.png\" class=\"\" width=\"683\" height=\"384\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB2YwuqX4Ab61BjSZFBXXc9pFXa_!!2541510480.png\" class=\"\" width=\"1366\" height=\"768\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB2TF8xX4oa61Bjy0FaXXcHwpXa_!!2541510480.png\" class=\"\" width=\"1366\" height=\"768\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB2VUesX3Uc61BjSZFmXXbJHFXa_!!2541510480.png\" class=\"\" width=\"683\" height=\"384\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB2CAOrX4wb61BjSZFlXXbuoVXa_!!2541510480.png\" class=\"\" width=\"683\" height=\"384\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB2zUasX3Uc61BjSZFmXXbJHFXa_!!2541510480.png\" class=\"\" width=\"683\" height=\"384\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2q01qXZkd61BjSZPhXXcb9VXa_!!2541510480.png\" class=\"\" width=\"683\" height=\"384\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2mfurX9Zb61BjSZPfXXaU.pXa_!!2541510480.png\" class=\"\" width=\"683\" height=\"384\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB27JapX37c61BjSZFKXXb6hFXa_!!2541510480.png\" class=\"\" width=\"683\" height=\"384\" style=\"border: 0px; vertical-align: top;\"/></span></span></p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><span style=\"font-family: 宋体; font-size: 10.5pt;\"></span></p><h5 style=\"margin: 0px 0px 0px 10px; padding: 0px; font-size: 15px; white-space: normal; widows: auto; background-color: rgb(255, 255, 255);\">看了该宝贝的人还看了</h5><ul style=\"margin: 0px; padding: 0px; list-style: none;\"><li></li></ul><p><br/></p>,', 'qq  951449465dubbo 权限设计，spring，springmvc ，mybatis，beetl  sso  solr搜索引擎        演示地址  http://zscat.carp.mopaasapp.com/login http://shop.zscat 开源分布式框架zsCat 55', '148', '11', 'shop.png', '框架', '238', null, '200', 'https://img.alicdn.com/imgextra/i1/2541510480/TB2CnxvXZwb61Bjy0FfXXXvlpXa_!!2541510480.png,https://img.alicdn.com/imgextra/i4/2541510480/TB27jdzX_ga61BjSspiXXXUSXXa_!!2541510480.png,https://img.alicdn.com/imgextra/i1/2541510480/TB2GDtvXZwb61Bjy0FfXXXvlpXa_!!2541510480.png,', '2', '2016-12-23 12:54:02', '0', '0', '0', null);
+INSERT INTO `t_product` VALUES ('35', 'zsShop商城', 'spring,springmvc ,通用mapper, dubbo,zookeep', '<p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><span style=\"color: rgb(108, 108, 108); font-size: 12px; line-height: 18px;\">spring，springmvc ，mybatis，通用mapping ，redis beetl &nbsp;</span><span style=\"line-height: 1.5;\">AmazeUI-2.4.2 &nbsp;jquery</span></p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><span style=\"line-height: 1.5;\"></span>后台权限管理 精确到按钮级别 &nbsp;菜单配置 字典管理 机构管理 用户 &nbsp;角色管理 &nbsp;商品管理 &nbsp;类别管理</p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\">订单管理 &nbsp; 购物车 &nbsp;广告 &nbsp;文章管理等</p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\">前台 首页菜单 购物详情 &nbsp;个人中心</p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\">树形组件 &nbsp;下拉组件 &nbsp;选择树组件 等等</p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><span style=\"color: rgb(108, 108, 108); font-size: 12px; line-height: 18px;\"></span></p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><br/></p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\">登录后 顶部显示后台管理 ，可以查看</p><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><span style=\"font-size: 12px;\"><a target=\"_blank\" style=\"color: rgb(51, 102, 204); outline: 0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB2tvhtbNmJ.eBjy0FhXXbBdFXa_!!2541510480.png\" style=\"border: 0px; vertical-align: top; height: 600px; width: 600px; float: none; margin: 0px;\"/></a></span><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2541510480/TB2wkprbSuJ.eBjy0FgXXXBBXXa_!!2541510480.jpg\" style=\"border: 0px; vertical-align: top; height: 500px; width: 500px; float: none; margin: 0px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB2QGpnbHeI.eBjSspkXXaXqVXa_!!2541510480.png\" style=\"border: 0px; vertical-align: top; height: 500px; width: 500px; float: none; margin: 0px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2541510480/TB2eRlebHaI.eBjy1XdXXcoqXXa_!!2541510480.png\" style=\"border: 0px; vertical-align: top; height: 500px; width: 500px; float: none; margin: 0px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB2T6FkbM1J.eBjy0FaXXaXeVXa_!!2541510480.png\" class=\"\" style=\"border: 0px; vertical-align: top; height: 500px; width: 500px; float: none; margin: 0px;\"/><img src=\"https://img.alicdn.com/imgextra/i3/2541510480/TB2iTtMbR9J.eBjy0FoXXXyvpXa_!!2541510480.png\" class=\"\" align=\"absmiddle\" width=\"1366\" height=\"768\" style=\"border: 0px; vertical-align: top;\"/><img src=\"https://img.alicdn.com/imgextra/i2/2541510480/TB2GfVubIeJ.eBjy0FiXXXqapXa_!!2541510480.jpg\" class=\"\" align=\"absmiddle\" width=\"1242\" height=\"2208\" style=\"border: 0px; vertical-align: top;\"/></p><h5 style=\"margin: 0px 0px 0px 10px; padding: 0px; font-size: 15px;\">买了该宝贝的人还买了</h5><p><br/></p>,', 'spring，springmvc ，mybatis，通用mapping ，redis beetl  AmazeUI-2.4.2  jquery后台权限管理 精确到按钮级别  菜单配置 字典管理 机构管理 用户  角色管理  商品管理  类别管理订单管理   购物车  广告  文章管理等前台 首页菜单 购物详情', '96', '10', 'zsshop.jpg', '框架', '238', null, '150', 'https://img.alicdn.com/imgextra/i3/2541510480/TB2tvhtbNmJ.eBjy0FhXXbBdFXa_!!2541510480.png,https://img.alicdn.com/imgextra/i4/2541510480/TB2wkprbSuJ.eBjy0FgXXXBBXXa_!!2541510480.jpg,https://img.alicdn.com/imgextra/i3/2541510480/TB2QGpnbHeI.eBjSspkXXaXqVXa_!!2541510480.png,', '2', '2016-12-23 12:58:40', '0', '0', '0', null);
+INSERT INTO `t_product` VALUES ('36', 'zscatPlus', 'spring,springmvc ,通用mapper, dubbo,zookeep', '<p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469194786.png\" style=\"float:none;\" title=\"H.png\"/></p><p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469198359.png\" style=\"float:none;\" title=\"QQ图片20161012163538.png\"/></p><p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469195105.png\" style=\"float:none;\" title=\"QQ图片20161012163729.png\"/></p><p><br/></p>,', '', '94', '11', 'H.png', '框架', '247', null, '50', '/zsTrade/static/ueditor/jsp/upload1/20161223/1482469194786.png,/zsTrade/static/ueditor/jsp/upload1/20161223/1482469198359.png,/zsTrade/static/ueditor/jsp/upload1/20161223/1482469195105.png,', '2', '2016-12-23 12:59:55', '0', '0', '0', '1');
+INSERT INTO `t_product` VALUES ('37', 'zscat社区', 'layui,ssm', '<p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469481972.png\" style=\"float:none;\" title=\"blog.png\"/></p><p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469481086.png\" style=\"float:none;\" title=\"QQ截图20161104134602.png\"/></p><p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469482244.png\" style=\"float:none;\" title=\"QQ截图20161104135156.png\"/></p><p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469487209.jpg\" style=\"float:none;\" title=\"04.jpg\"/></p><p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469481047.png\" style=\"float:none;\" title=\"QQ图片20161028110015.png\"/></p><p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469481495.png\" style=\"float:none;\" title=\"QQ图片20161028110044.png\"/></p><p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469480820.png\" style=\"float:none;\" title=\"QQ图片20161028111335.png\"/></p><p><br/></p>,', '', '20', '10', 'blog.png', '框架', '245', null, '20', '/zsTrade/static/ueditor/jsp/upload1/20161223/1482469481972.png,/zsTrade/static/ueditor/jsp/upload1/20161223/1482469481086.png,/zsTrade/static/ueditor/jsp/upload1/20161223/1482469482244.png,', '2', '2017-01-24 13:04:44', '0', '0', '0', null);
+INSERT INTO `t_product` VALUES ('38', 'zsCms', 'ssm', '<p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469612881.png\" style=\"float:none;\" title=\"cms.png\"/></p><p><img src=\"/zsTrade/static/ueditor/jsp/upload1/20161223/1482469616227.png\" style=\"float:none;\" title=\"QQ图片20161028130524.png\"/></p><p><br/></p>,', '', '18', '10', 'cms.png', '框架', '246', null, '30', '/zsTrade/static/ueditor/jsp/upload1/20161223/1482469612881.png,/zsTrade/static/ueditor/jsp/upload1/20161223/1482469616227.png,', '2', '2016-12-23 13:06:55', '0', '0', '0', '2');
+INSERT INTO `t_product` VALUES ('39', 'zscatLte分布式框架', 'spring', '<p style=\"margin-bottom: 15px; orphans: 2; white-space: normal; widows: 2; box-sizing: inherit; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; background-color: rgb(250, 250, 250); margin-top: 0px !important;\">zscatLte是一个轻量级权限管理系统，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。<br style=\"box-sizing: inherit;\"/>使用zscatLte搭建项目，只需编写30%左右代码，其余的代码交给系统自动生成。<br style=\"box-sizing: inherit;\"/>一个月的工作量，一周就能完成，剩余的时间可以陪家人、朋友、撩妹、钓凯子等，从此踏入高富帅、白富美行业。</p><p style=\"margin-top: 0px; margin-bottom: 15px; orphans: 2; white-space: normal; widows: 2; box-sizing: inherit; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; background-color: rgb(250, 250, 250);\"><strong style=\"box-sizing: inherit;\">具有如下特点</strong></p><ul class=\"task-list\" style=\"orphans: 2; white-space: normal; widows: 2; box-sizing: inherit; font-size: 14px; line-height: 24px; margin: 0px 0px 15px; padding-left: 30px; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; background-color: rgb(250, 250, 250);\"><li>轻量级的权限系统，只涉及Spring、Shiro、Mybatis后端框架，降低学习使用成本</li><li>友好的代码结构及注释，便于阅读及二次开发</li><li>支持HTML、JSP、Velocity、Freemarker等视图，零技术门槛</li><li>灵活的权限控制，可控制到页面或按钮，满足绝大部分的权限需求(如需控制到按钮级别，需使用Shiro标签，控制按钮的显示或隐藏)</li><li>页面交互使用Vue2.x，极大的提高了开发效率</li><li>完善的代码生成机制，可在线生成entity、xml、dao、service、page、js代码，减少70%以上的开发任务</li><li>引入quartz定时任务，可动态完成任务的添加、修改、删除、暂停、恢复及日志查看等功能</li><li>引入路由机制，刷新页面会停留在当前页</li></ul><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833332927.png\" style=\"float:none;\" title=\"blog.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833337146.png\" style=\"float:none;\" title=\"gen.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833336912.png\" style=\"float:none;\" title=\"menu.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833335881.png\" style=\"float:none;\" title=\"zscatlte.png\"/></p><p><br/></p>,', 'zscatLte是一个轻量级权限管理系统，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。使用zscatLte搭建项目，只需编写30%左右代码，其余的代码交给系统自动生成。一个月的工作量，一周就能完成，剩余的时间可以陪家人、朋友、撩妹、钓凯子等，从此踏入高富帅、白富美行业。具有如下特点轻量级的权限系统，只', '49', '11', 'zscatlte.png', '框架', '247', null, '50', '/static/ueditor/jsp/upload1/20161227/1482833332927.png,/static/ueditor/jsp/upload1/20161227/1482833337146.png,/static/ueditor/jsp/upload1/20161227/1482833336912.png,', '34', '2016-12-27 18:08:57', '0', '0', '0', '1');
+INSERT INTO `t_product` VALUES ('40', 'java后台框架', 'hibernate', '<p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833394317.png\" style=\"float:none;\" title=\"blog.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833403014.png\" style=\"float:none;\" title=\"menu.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833395840.png\" style=\"float:none;\" title=\"role.png\"/></p><p><br/></p>,', '', '41', '10', 'blog.png', '框架', '247', null, '1', '/static/ueditor/jsp/upload1/20161227/1482833394317.png,/static/ueditor/jsp/upload1/20161227/1482833403014.png,/static/ueditor/jsp/upload1/20161227/1482833395840.png,', '34', '2017-01-24 18:09:58', '0', '0', '0', null);
+INSERT INTO `t_product` VALUES ('41', 'ssh后台框架_activiy5', 'ssh', '<h3 style=\"box-sizing: inherit; font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; line-height: 1.33em; margin: 20px 0px 10px; padding: 0px; font-size: 18px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; color: rgba(0, 0, 0, 0.8); white-space: normal; background-color: rgb(250, 250, 250);\">ommon</h3><ul class=\"task-list\" style=\"box-sizing: inherit; font-size: 14px; line-height: 24px; margin: 0px 0px 15px; padding-left: 30px; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; white-space: normal; background-color: rgb(250, 250, 250);\"><li>泛型封装dao、service、controller基类，包含分页，查询条件封装，从而达到快速crud操作(参考<a href=\"https://github.com/springside\" target=\"_blank\" style=\"box-sizing: inherit; color: rgb(65, 131, 196); text-decoration: none; background-color: transparent; cursor: pointer !important; word-wrap: break-word; margin-top: 0px; margin-bottom: 0px; background-position: initial initial; background-repeat: initial initial;\">springside4</a>&quot;)</li><li>简易代码生成器,增加字段配置功能、生成页面功能，实现增删查改不需要写一句代码(参考<a href=\"https://github.com/thinkgem/jeesite\" target=\"_blank\" style=\"box-sizing: inherit; color: rgb(65, 131, 196); text-decoration: none; background-color: transparent; cursor: pointer !important; word-wrap: break-word; margin-top: 0px; margin-bottom: 0px; background-position: initial initial; background-repeat: initial initial;\">jeesite</a>)</li><li>ehcache缓存</li><li>springmvc 整合hibernate validater 进行后端数据验证</li></ul><h3 style=\"box-sizing: inherit; font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; line-height: 1.33em; margin: 20px 0px 10px; padding: 0px; font-size: 18px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; color: rgba(0, 0, 0, 0.8); white-space: normal; background-color: rgb(250, 250, 250);\"><a class=\"anchor\" id=\"系统权限管理_6\" href=\"http://git.oschina.net/rguess/thinker#系统权限管理_6\" style=\"box-sizing: inherit; color: rgb(65, 131, 196); text-decoration: none; background-color: transparent; cursor: pointer; word-wrap: break-word; display: block; padding-left: 30px; margin-left: -20px; position: absolute; top: 0px; left: 0px; bottom: 0px; outline: none; background-position: initial initial; background-repeat: initial initial;\"></a>系统权限管理</h3><ul class=\"task-list\" style=\"box-sizing: inherit; font-size: 14px; line-height: 24px; margin: 0px 0px 15px; padding-left: 30px; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; white-space: normal; background-color: rgb(250, 250, 250);\"><li>系统管理——包含用户、角色、权限、资源、菜单管理</li><li>权限管理——使用框架apache shiro进行系统认证、授权操作</li><ul class=\"task-list\" style=\"box-sizing: inherit; margin: 0px; padding-left: 30px;\"><li>系统认证、授权操作</li><li>按钮粒度的权限控制</li><li>并发登录人数控制</li><li>后端使用注解进行方法级别的权限控制</li></ul><li>系统登录,操作日志记录,查询,分析</li></ul><h3 style=\"box-sizing: inherit; font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; line-height: 1.33em; margin: 20px 0px 10px; padding: 0px; font-size: 18px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; color: rgba(0, 0, 0, 0.8); white-space: normal; background-color: rgb(250, 250, 250);\"><a class=\"anchor\" id=\"oa工作流程_7\" href=\"http://git.oschina.net/rguess/thinker#oa工作流程_7\" style=\"box-sizing: inherit; color: rgb(65, 131, 196); text-decoration: none; background-color: transparent; cursor: pointer; word-wrap: break-word; display: block; padding-left: 30px; margin-left: -20px; position: absolute; top: 0px; left: 0px; bottom: 0px; outline: none; background-position: initial initial; background-repeat: initial initial;\"></a>OA工作流程</h3><ul class=\"task-list\" style=\"box-sizing: inherit; font-size: 14px; line-height: 24px; margin: 0px 0px 15px; padding-left: 30px; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; white-space: normal; background-color: rgb(250, 250, 250);\"><li>集成activiti(工作流引擎)</li><ul class=\"task-list\" style=\"box-sizing: inherit; margin: 0px; padding-left: 30px;\"><li>整合spring</li><li>工作流引擎并完成工作流通用基类、常用工具类</li><li>通用待办,已办,我的流程等常用查询</li><li>定义业务开发需实现的接口</li><li>流程部署</li><li>请假流程例子</li><li>自由工作流设计例子</li></ul></ul><h3 style=\"box-sizing: inherit; font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; line-height: 1.33em; margin: 20px 0px 10px; padding: 0px; font-size: 18px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; color: rgba(0, 0, 0, 0.8); white-space: normal; background-color: rgb(250, 250, 250);\"><a class=\"anchor\" id=\"内容管理_8\" href=\"http://git.oschina.net/rguess/thinker#内容管理_8\" style=\"box-sizing: inherit; color: rgb(65, 131, 196); text-decoration: none; background-color: transparent; cursor: pointer; word-wrap: break-word; display: block; padding-left: 30px; margin-left: -20px; position: absolute; top: 0px; left: 0px; bottom: 0px; outline: none; background-position: initial initial; background-repeat: initial initial;\"></a>内容管理</h3><ul class=\"task-list\" style=\"box-sizing: inherit; font-size: 14px; line-height: 24px; margin: 0px 0px 15px; padding-left: 30px; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; white-space: normal; background-color: rgb(250, 250, 250);\"><li>实现栏目，文章，系统静态资源的管理</li><li>实现上传word发表文章</li><li>实现ueditor富文本方式发表文章</li><li>aop+freemarker+线程实现首页静态化</li><li>实现多个站点的管理</li><li>基于该cms的个人博客网站</li></ul><h3 style=\"box-sizing: inherit; font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; line-height: 1.33em; margin: 20px 0px 10px; padding: 0px; font-size: 18px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; color: rgba(0, 0, 0, 0.8); white-space: normal; background-color: rgb(250, 250, 250);\"><a class=\"anchor\" id=\"utils_9\" href=\"http://git.oschina.net/rguess/thinker#utils_9\" style=\"box-sizing: inherit; color: rgb(65, 131, 196); text-decoration: none; background-color: transparent; cursor: pointer; word-wrap: break-word; display: block; padding-left: 30px; margin-left: -20px; position: absolute; top: 0px; left: 0px; bottom: 0px; outline: none; background-position: initial initial; background-repeat: initial initial;\"></a>utils</h3><ul class=\"task-list\" style=\"box-sizing: inherit; font-size: 14px; line-height: 24px; margin: 0px 0px 15px; padding-left: 30px; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; white-space: normal; background-color: rgb(250, 250, 250);\"><li>开发中常用工具类整理</li><ul class=\"task-list\" style=\"box-sizing: inherit; margin: 0px; padding-left: 30px;\"><li>基于apache poi的通用导出excel工具类</li><li>各种类型相互转化工具类</li><li>Http与Servlet工具类</li><li>常用日期处理工具类</li><li>各种编码,解码,加密等工作类</li><li>反射操作封装</li><li>文件操作</li><li>WordToHtml</li><li>spring注解方式实现定时任务调度，实现mysql数据备份</li><li>...</li></ul><li>整理了丰富多样的js、jquery插件</li><ul class=\"task-list\" style=\"box-sizing: inherit; margin: 0px; padding-left: 30px;\"><li>bootstrap</li><li>jquery validation、修改验证后显示以适应bootstrap，显得更加美观、添加常用验证</li><li>自定义的js分页插件(配合bootstrap-paginator)</li><li>ztree(jquery 树插件)</li><li>datetimepicker(日历控件)</li><li>gritter(提示框)</li><li>jquery-slimscroll(定义局部元素滚动)</li><li>jquery-treegrid(树插件能更好的与bootstrap table融合以展示数据)</li><li>bootstrap-tree(简易的树插件)</li><li>chosen-bootstrap(下拉框选择控件)</li><li>font-awesome(字体)</li><li>uniform(表单美化)</li><li>jquery blockUI(遮罩层)</li><li>ueditor(富文本编辑器)</li><li>bootstrap-fileupload</li><li>jquery fileupload多文件上传带进度条</li><li>....</li></ul></ul><h3 style=\"box-sizing: inherit; font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; line-height: 1.33em; margin: 20px 0px 10px; padding: 0px; font-size: 18px; -webkit-font-smoothing: antialiased; cursor: text; position: relative; color: rgba(0, 0, 0, 0.8); white-space: normal; background-color: rgb(250, 250, 250);\"><a class=\"anchor\" id=\"others_10\" href=\"http://git.oschina.net/rguess/thinker#others_10\" style=\"box-sizing: inherit; color: rgb(65, 131, 196); text-decoration: none; background-color: transparent; cursor: pointer; word-wrap: break-word; display: block; padding-left: 30px; margin-left: -20px; position: absolute; top: 0px; left: 0px; bottom: 0px; outline: none; background-position: initial initial; background-repeat: initial initial;\"></a>others</h3><ul class=\"task-list\" style=\"box-sizing: inherit; font-size: 14px; line-height: 24px; margin: 0px 0px 15px; padding-left: 30px; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; white-space: normal; background-color: rgb(250, 250, 250);\"><li>集成jsper report动态报表工具(未完成)</li><li>jpush消息推送</li></ul><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833523239.png\" style=\"float:none;\" title=\"cms.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833525442.png\" style=\"float:none;\" title=\"liuc2.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833517232.png\" style=\"float:none;\" title=\"menu.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833524270.png\" style=\"float:none;\" title=\"role1.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833524459.png\" style=\"float:none;\" title=\"流程.png\"/></p><p><br/></p>,', 'ommon泛型封装dao、service、controller基类，包含分页，查询条件封装，从而达到快速crud操作(参考springside4\")简易代码生成器,增加字段配置功能、生成页面功能，实现增删查改不需要写一句代码(参考jeesite)ehcache缓存springmvc 整合hibernate v', '24', '10', 'home1.png', '框架', '247', null, '50', '/static/ueditor/jsp/upload1/20161227/1482833523239.png,/static/ueditor/jsp/upload1/20161227/1482833525442.png,/static/ueditor/jsp/upload1/20161227/1482833517232.png,', '34', '2016-12-27 18:12:03', '0', '0', '0', null);
+INSERT INTO `t_product` VALUES ('42', '因库网校系统', 'ssm', '<p style=\"box-sizing: inherit; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250); margin-top: 0px !important;\"><strong style=\"box-sizing: inherit;\">免费开源网校系统源代码轻松搭建在线教育平台</strong></p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">因酷交流群①：468278040 (满)</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\"><br/></p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">因酷交流群②：164295773</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">官网:<a href=\"http://http//www.inxedu.com\" class=\"md_relative_url\" target=\"_blank\" style=\"box-sizing: inherit; color: rgb(65, 131, 196); text-decoration: none; background-color: transparent; cursor: pointer !important; word-wrap: break-word; background-position: initial initial; background-repeat: initial initial;\">http://www.inxedu.com</a></p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">演示站:<a href=\"http://http//demo1.inxedu.com\" class=\"md_relative_url\" target=\"_blank\" style=\"box-sizing: inherit; color: rgb(65, 131, 196); text-decoration: none; background-color: transparent; cursor: pointer !important; word-wrap: break-word; background-position: initial initial; background-repeat: initial initial;\">http://demo1.inxedu.com</a></p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">账号:<a href=\"mailto:demo@inxedu.com\" style=\"box-sizing: inherit; color: rgb(65, 131, 196); text-decoration: none; background-color: transparent; cursor: pointer !important; word-wrap: break-word; background-position: initial initial; background-repeat: initial initial;\">demo@inxedu.com</a></p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">密码:111111<br style=\"box-sizing: inherit;\"/><br style=\"box-sizing: inherit;\"/>网站功能模块:</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">课程功能</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">咨询功能</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">问答功能</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">首页banner推荐</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">播放模块</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">个人中心模块</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">个人资料模块</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">修改头像模块</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">收藏课程模块</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">问题总结:<br style=\"box-sizing: inherit;\"/>项目导入如果get set报错请添加lombok插件就可以正常使用了</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\"><strong style=\"box-sizing: inherit;\">技术框架</strong></p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">核心框架：Spring Framework</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">视图框架：Spring MVC</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">持久层框架：MyBatis 3</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">JS框架：jQuery</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">富文本：kindeditor</p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\"><strong style=\"box-sizing: inherit;\">开发环境</strong></p><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">建议开发者使用以下环境，这样避免版本带来的问题</p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833798198.png\" style=\"float:none;\" title=\"1index.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833794932.png\" style=\"float:none;\" title=\"2index.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482833799763.png\" style=\"float:none;\" title=\"3index.png\"/></p><p><br/></p>,', '免费开源网校系统源代码轻松搭建在线教育平台因酷交流群①：468278040 (满)因酷交流群②：164295773官网:http://www.inxedu.com演示站:http://demo1.inxedu.com账号:demo@inxedu.com密码:111111网站功能模块:课程功能咨询功能问答功能首', '5', '10', '1index.png', '框架', '238', null, '1', '/static/ueditor/jsp/upload1/20161227/1482833798198.png,/static/ueditor/jsp/upload1/20161227/1482833794932.png,/static/ueditor/jsp/upload1/20161227/1482833799763.png,', '34', '2016-12-27 18:16:38', '0', '0', '0', '1');
+INSERT INTO `t_product` VALUES ('43', 'jeesite后台框架', '', '<p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">1、后端</p><ul class=\"task-list\" style=\"box-sizing: inherit; font-size: 14px; line-height: 24px; margin: 0px 0px 15px; padding-left: 30px; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; white-space: normal; background-color: rgb(250, 250, 250);\"><li>核心框架：Spring Framework 4.1</li><li>安全框架：Apache Shiro 1.2</li><li>视图框架：Spring MVC 4.1</li><li>服务端验证：Hibernate Validator 5.2</li><li>布局框架：SiteMesh 2.4</li><li>工作流引擎：Activiti 5.21</li><li>任务调度：Spring Task 4.1</li><li>持久层框架：MyBatis 3.2</li><li>数据库连接池：Alibaba Druid 1.0</li><li>缓存框架：Ehcache 2.6、Redis</li><li>日志管理：SLF4J 1.7、Log4j</li><li>工具类：Apache Commons、Jackson 2.2、Xstream 1.4、Dozer 5.3、POI 3.9</li></ul><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">2、前端</p><ul class=\"task-list\" style=\"box-sizing: inherit; font-size: 14px; line-height: 24px; margin: 0px 0px 15px; padding-left: 30px; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; white-space: normal; background-color: rgb(250, 250, 250);\"><li>JS框架：jQuery 1.9。</li><li>CSS框架：Twitter Bootstrap 2.3.1（稳定是后台，UI方面根据需求自己升级改造吧）。</li><li>客户端验证：JQuery Validation Plugin 1.11。</li><li>富文本在线编辑：CKEditor</li><li>在线文件管理：CKFinder</li><li>动态页签：Jerichotab</li><li>手机端框架：Jingle</li><li>数据表格：jqGrid</li><li>对话框：jQuery jBox</li><li>下拉选择框：jQuery Select2</li><li>树结构控件：jQuery zTree</li><li>日期控件： My97DatePicker</li></ul><p style=\"box-sizing: inherit; margin-top: 0px; margin-bottom: 15px; line-height: 25px; text-align: justify; word-break: break-word; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; font-size: 15px; white-space: normal; background-color: rgb(250, 250, 250);\">4、平台</p><ul class=\"task-list\" style=\"box-sizing: inherit; font-size: 14px; line-height: 24px; margin: 0px 0px 15px; padding-left: 30px; color: rgba(0, 0, 0, 0.8); font-family: Lato, &#39;Helvetica Neue&#39;, Arial, Helvetica, &#39;Microsoft YaHei&#39;, sans-serif; white-space: normal; background-color: rgb(250, 250, 250);\"><li>服务器中间件：在Java EE 5规范（Servlet 2.5、JSP 2.1）下开发，支持应用服务器中间件 有Tomcat 6+、Jboss 7+、WebLogic 10+、WebSphere 8+。</li><li>数据库支持：目前仅提供MySql和Oracle数据库的支持，但不限于数据库，平台留有其它数据库支持接口， 你可以很方便的更改为其它数据库，如：SqlServer 2008、MySql 5.5、H2等</li><li>开发环境：Java、Eclipse Java EE 4.3、Maven 3.1、Git</li></ul><p><br/></p>,', '1、后端核心框架：Spring Framework 4.1安全框架：Apache Shiro 1.2视图框架：Spring MVC 4.1服务端验证：Hibernate Validator 5.2布局框架：SiteMesh 2.4工作流引擎：Activiti 5.21任务调度：Spring Task 4.1持', '16', '10', 'zscat.png', '框架', '247', null, '', '', '34', '2016-12-27 18:21:25', '0', '0', '0', null);
+INSERT INTO `t_product` VALUES ('44', 'zscat_妹子后台框架', 'ssm', '<p><img src=\"/static/ueditor/jsp/upload1/20161227/1482834426033.png\" style=\"float:none;\" title=\"1meizi.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482834430190.png\" style=\"float:none;\" title=\"2meizi.png\"/></p><p><img src=\"/static/ueditor/jsp/upload1/20161227/1482834431132.png\" style=\"float:none;\" title=\"3妹子1.png\"/></p><p><br/></p>,', '', '30', '10', '1meizi.png', '框架', '247', null, '55', '/static/ueditor/jsp/upload1/20161227/1482834426033.png,/static/ueditor/jsp/upload1/20161227/1482834430190.png,/static/ueditor/jsp/upload1/20161227/1482834431132.png,', '34', '2016-12-27 18:27:07', '0', '0', '0', null);
+INSERT INTO `t_product` VALUES ('49', '华迪空气净化器KJ420P-HD280', '', '<ul class=\"attributes-list\" style=\"margin: 0px; padding: 0px 15px; list-style: none; clear: both;\"><li>品牌:&nbsp;华迪</li><li>型号:&nbsp;KJ420P-HD280</li><li>噪音:&nbsp;0-35dB</li><li>控制方式:&nbsp;其他</li><li>智能类型:&nbsp;其他</li><li>颗粒物CADR值:&nbsp;420.1立方米/小时</li><li>颗粒物CCM值:&nbsp;P4(12000≤M)</li><li>风量:&nbsp;600立方米/小时</li><li>适用面积:&nbsp;30m^2-50m^2</li><li>功能:&nbsp;定时 除VOC 除花粉 除颗粒物 除甲醛 除烟除尘 杀菌 加湿 加氧</li><li>空气净化产品类别:&nbsp;空气净化器</li><li>风量:&nbsp;400 立方米/小时以上</li><li>电源方式:&nbsp;交流电</li><li>售后服务:&nbsp;店铺三包</li><li>适用对象:&nbsp;家用 卧室 办公室</li><li>空气净化器风量:&nbsp;400 立方米/小时</li></ul><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2591435385/TB2Qmv4XrRkpuFjSspmXXc.9XXa_!!2591435385.jpg\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2591435385/TB2XOn3XxXlpuFjSsphXXbJOXXa_!!2591435385.jpg\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2591435385/TB2JCv4Xr8kpuFjy0FcXXaUhpXa_!!2591435385.jpg\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2591435385/TB2Nrj2XBNkpuFjy0FaXXbRCVXa_!!2591435385.jpg\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2591435385/TB22Wv4XwJlpuFjSspjXXcT.pXa_!!2591435385.jpg\" class=\"\" width=\"750\" height=\"567\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2591435385/TB2plL4XC0jpuFjy0FlXXc0bpXa_!!2591435385.jpg\" class=\"\" width=\"750\" height=\"567\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2591435385/TB2T6T3XrVkpuFjSspcXXbSMVXa_!!2591435385.jpg\" class=\"\" width=\"750\" height=\"531\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2591435385/TB2TRL4XC0jpuFjy0FlXXc0bpXa_!!2591435385.jpg\" class=\"\" width=\"750\" height=\"720\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2591435385/TB2nzn2Xw0kpuFjSspdXXX4YXXa_!!2591435385.jpg\" class=\"\" width=\"750\" height=\"759\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2591435385/TB2Wmz4Xr8kpuFjy0FcXXaUhpXa_!!2591435385.jpg\" class=\"\" width=\"750\" height=\"828\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2591435385/TB2GAn3XxXkpuFjy0FiXXbUfFXa_!!2591435385.jpg\" class=\"\" width=\"750\" height=\"684\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2591435385/TB2PAn3XxXkpuFjy0FiXXbUfFXa_!!2591435385.jpg\" class=\"\" width=\"750\" height=\"477\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2591435385/TB2_Y_3XCtkpuFjy0FhXXXQzFXa_!!2591435385.jpg\" class=\"\" width=\"750\" height=\"720\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2591435385/TB2VJP4XrtlpuFjSspoXXbcDpXa_!!2591435385.jpg\" class=\"\" width=\"750\" height=\"651\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/></p><p><br/></p>,', '品牌: 华迪型号: KJ420P-HD280噪音: 0-35dB控制方式: 其他智能类型: 其他颗粒物CADR值: 420.1立方米/小时颗粒物CCM值: P4(12000≤M)风量: 600立方米/小时适用面积: 30m^2-50m^2功能: 定时 除VOC 除花粉 除颗粒物 除甲醛 除烟除尘 杀菌 加湿 ', '11', '13', '1智能.jpg', '智能家居', '250', null, '3980', 'https://img.alicdn.com/imgextra/i2/2591435385/TB2Qmv4XrRkpuFjSspmXXc.9XXa_!!2591435385.jpg,https://img.alicdn.com/imgextra/i2/2591435385/TB2XOn3XxXlpuFjSsphXXbJOXXa_!!2591435385.jpg,https://img.alicdn.com/imgextra/i1/2591435385/TB2JCv4Xr8kpuFjy0FcXXaUhpXa_!!2591435385.jpg,', '72', '2017-01-06 13:22:42', '0', '0', '0', '2');
+INSERT INTO `t_product` VALUES ('50', '华迪智能空气净化器', '', '<ul class=\"attributes-list\" style=\"margin: 0px; padding: 0px 15px; list-style: none; clear: both;\"><li>品牌:&nbsp;华迪</li><li>型号:&nbsp;HD-AP100</li><li>智能类型:&nbsp;其他</li></ul><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><img src=\"https://img.alicdn.com/imgextra/i2/2591435385/TB2Jw99spXXXXcNXpXXXXXXXXXX_!!2591435385.png\" align=\"absmiddle\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img src=\"https://img.alicdn.com/imgextra/i3/2591435385/TB2MW2xspXXXXXVXpXXXXXXXXXX_!!2591435385.png\" align=\"absmiddle\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img src=\"https://img.alicdn.com/imgextra/i4/2591435385/TB2xO6yspXXXXXVXpXXXXXXXXXX_!!2591435385.png\" align=\"absmiddle\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img src=\"https://img.alicdn.com/imgextra/i4/2591435385/TB2Tcm_spXXXXXiXFXXXXXXXXXX_!!2591435385.png\" align=\"absmiddle\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img src=\"https://img.alicdn.com/imgextra/i1/2591435385/TB2oxv8spXXXXXCXXXXXXXXXXXX_!!2591435385.png\" class=\"\" align=\"absmiddle\" width=\"800\" height=\"626\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img src=\"https://img.alicdn.com/imgextra/i4/2591435385/TB2xOHgspXXXXceXpXXXXXXXXXX_!!2591435385.png\" class=\"\" align=\"absmiddle\" width=\"800\" height=\"610\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img src=\"https://img.alicdn.com/imgextra/i3/2591435385/TB2JTHLspXXXXcqXXXXXXXXXXXX_!!2591435385.png\" class=\"\" align=\"absmiddle\" width=\"800\" height=\"539\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/></p><p><br/></p>,', '品牌: 华迪型号: HD-AP100智能类型: 其他', '11', '13', '1智能.jpg', '智能家居', '250', null, '2280', 'https://img.alicdn.com/imgextra/i2/2591435385/TB2Jw99spXXXXcNXpXXXXXXXXXX_!!2591435385.png,https://img.alicdn.com/imgextra/i3/2591435385/TB2MW2xspXXXXXVXpXXXXXXXXXX_!!2591435385.png,https://img.alicdn.com/imgextra/i4/2591435385/TB2xO6yspXXXXXVXpXXXXXXXXXX_!!2591435385.png,', '72', '2017-01-06 13:24:02', '0', '0', '0', null);
+INSERT INTO `t_product` VALUES ('51', '华迪智能网关HDG6200', '', '<ul class=\"attributes-list\" style=\"margin: 0px; padding: 0px 15px; list-style: none; clear: both;\"><li>兼容平台:&nbsp;ANDROID</li><li>品牌:&nbsp;华迪</li><li>连接方式:&nbsp;Wi-Fi连接</li><li>颜色:&nbsp;白色</li><li>颜色分类:&nbsp;白色</li></ul><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><span style=\"color: rgb(108, 108, 108); line-height: 14.4px; font-size: 12px;\">支持智能家居功能、云电脑功能、网络机顶盒功能、无线路由器热点功能、支持与指定型号智能路由器家庭联网功能、支持物业管理系统、支持宽频系统、整合支持数百个互联网应用<img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2591435385/TB2R5nXspXXXXa_XpXXXXXXXXXX_!!2591435385.jpg\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2591435385/TB2EfYaspXXXXbPXpXXXXXXXXXX_!!2591435385.jpg\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/></span></p><p><br/></p>,', '兼容平台: ANDROID品牌: 华迪连接方式: Wi-Fi连接颜色: 白色颜色分类: 白色支持智能家居功能、云电脑功能、网络机顶盒功能、无线路由器热点功能、支持与指定型号智能路由器家庭联网功能、支持物业管理系统、支持宽频系统、整合支持数百个互联网应用', '0', '13', '3智能.png', '智能家居', '251', null, '339', 'https://img.alicdn.com/imgextra/i4/2591435385/TB2R5nXspXXXXa_XpXXXXXXXXXX_!!2591435385.jpg,https://img.alicdn.com/imgextra/i1/2591435385/TB2EfYaspXXXXbPXpXXXXXXXXXX_!!2591435385.jpg,', '72', '2017-01-06 13:25:33', '0', '0', '0', '2');
+INSERT INTO `t_product` VALUES ('52', '华迪智能插排', '', '<p><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2591435385/TB2fBlRaH1K.eBjSszbXXcTHpXa_!!2591435385.png\" style=\"border: 0px; vertical-align: top; font-family: tahoma, arial, 宋体, sans-serif; font-size: 14px; line-height: 21px; white-space: normal; background-color: rgb(255, 255, 255); max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2591435385/TB2jAxMaHaI.eBjSspaXXXIKpXa_!!2591435385.png\" style=\"border: 0px; vertical-align: top; font-family: tahoma, arial, 宋体, sans-serif; font-size: 14px; line-height: 21px; white-space: normal; background-color: rgb(255, 255, 255); max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i4/2591435385/TB2WeRSaNmJ.eBjy0FhXXbBdFXa_!!2591435385.png\" style=\"border: 0px; vertical-align: top; font-family: tahoma, arial, 宋体, sans-serif; font-size: 14px; line-height: 21px; white-space: normal; background-color: rgb(255, 255, 255); max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2591435385/TB2o1RQaIeJ.eBjy0FiXXXqapXa_!!2591435385.png\" style=\"border: 0px; vertical-align: top; font-family: tahoma, arial, 宋体, sans-serif; font-size: 14px; line-height: 21px; white-space: normal; background-color: rgb(255, 255, 255); max-width: 750px;\"/></p>,', '', '1', '13', '4智能.jpg', '智能家居', '251', null, '139', 'https://img.alicdn.com/imgextra/i3/2591435385/TB2fBlRaH1K.eBjSszbXXcTHpXa_!!2591435385.png,https://img.alicdn.com/imgextra/i2/2591435385/TB2jAxMaHaI.eBjSspaXXXIKpXa_!!2591435385.png,https://img.alicdn.com/imgextra/i4/2591435385/TB2WeRSaNmJ.eBjy0FhXXbBdFXa_!!2591435385.png,', '72', '2017-01-06 13:26:38', '0', '0', '0', null);
+INSERT INTO `t_product` VALUES ('53', '华迪智能控制面板', '', '<ul class=\"attributes-list\" style=\"margin: 0px; padding: 0px 15px; list-style: none; clear: both;\"><li>品牌:&nbsp;华迪</li><li>型号:&nbsp;HD-CP100</li><li>智能类型:&nbsp;其他</li><li>颜色分类:&nbsp;白色 黑色</li></ul><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2591435385/TB2FvL6aigSXeFjy0FcXXahAXXa_!!2591435385.png\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2591435385/TB29AVQaHaI.eBjSszdXXaB6XXa_!!2591435385.png\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2591435385/TB2BztNaHeI.eBjSspkXXaXqVXa_!!2591435385.png\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2591435385/TB2EvP6aigSXeFjy0FcXXahAXXa_!!2591435385.png\" style=\"border: 0px; vertical-align: top; max-width: 750px;\"/></p><p><br/></p>,', '品牌: 华迪型号: HD-CP100智能类型: 其他颜色分类: 白色 黑色', '6', '13', '5智能.png', '智能家居', '251', null, '129', 'https://img.alicdn.com/imgextra/i3/2591435385/TB2FvL6aigSXeFjy0FcXXahAXXa_!!2591435385.png,https://img.alicdn.com/imgextra/i2/2591435385/TB29AVQaHaI.eBjSszdXXaB6XXa_!!2591435385.png,https://img.alicdn.com/imgextra/i1/2591435385/TB2BztNaHeI.eBjSspkXXaXqVXa_!!2591435385.png,', '72', '2017-01-06 13:27:41', '0', '0', '0', '1');
+INSERT INTO `t_product` VALUES ('54', '华迪智能灯泡', '', '<ul class=\"attributes-list\" style=\"margin: 0px; padding: 0px 15px; list-style: none; clear: both;\"><li>品牌:&nbsp;华迪</li><li>型号:&nbsp;HD-LL100</li><li>智能类型:&nbsp;其他</li><li>颜色分类:&nbsp;白色</li></ul><p style=\"margin-top: 1.12em; margin-bottom: 1.12em; padding: 0px;\"><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2591435385/TB2lxjGoFXXXXa0XXXXXXXXXXXX_!!2591435385.png\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i2/2591435385/TB2Tb_woFXXXXcxXXXXXXXXXXXX_!!2591435385.png\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i3/2591435385/TB28PHAoFXXXXaGXXXXXXXXXXXX_!!2591435385.png\" style=\"border: 0px; vertical-align: top;\"/><img align=\"absmiddle\" src=\"https://img.alicdn.com/imgextra/i1/2591435385/TB2ZVHuoFXXXXXAXpXXXXXXXXXX_!!2591435385.png\" style=\"border: 0px; vertical-align: top;\"/></p><p><br/></p>,', '品牌: 华迪型号: HD-LL100智能类型: 其他颜色分类: 白色', '3', '13', '6智能.png', '智能家居', '251', null, '99', 'https://img.alicdn.com/imgextra/i3/2591435385/TB2lxjGoFXXXXa0XXXXXXXXXXXX_!!2591435385.png,https://img.alicdn.com/imgextra/i2/2591435385/TB2Tb_woFXXXXcxXXXXXXXXXXXX_!!2591435385.png,https://img.alicdn.com/imgextra/i3/2591435385/TB28PHAoFXXXXaGXXXXXXXXXXXX_!!2591435385.png,', '72', '2017-01-06 13:28:46', '0', '0', '0', '2');
+
+-- ----------------------------
+-- Table structure for t_producttype
+-- ----------------------------
+DROP TABLE IF EXISTS `t_producttype`;
+CREATE TABLE `t_producttype` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `create_by` bigint(64) DEFAULT NULL COMMENT '创建者',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `del_flag` char(1) DEFAULT '0' COMMENT '删除标记(0活null 正常 1,删除)',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_producttype
+-- ----------------------------
+INSERT INTO `t_producttype` VALUES ('10', '框架', '2', '2016-12-22 09:59:15', '0');
+INSERT INTO `t_producttype` VALUES ('11', 'test', '2', '2016-12-22 10:09:37', '0');
+
+-- ----------------------------
+-- Table structure for t_product_class
+-- ----------------------------
+DROP TABLE IF EXISTS `t_product_class`;
+CREATE TABLE `t_product_class` (
+  `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '索引ID',
+  `name` varchar(100) NOT NULL COMMENT '分类名称',
+  `pic` varchar(255) DEFAULT NULL COMMENT '分类图片',
+  `del_flag` char(1) NOT NULL DEFAULT '1' COMMENT '前台显示，0为否，1为是，默认为1',
+  `title` varchar(200) DEFAULT NULL COMMENT '名称',
+  `parent_id` bigint(20) DEFAULT NULL,
+  `parent_ids` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=255 DEFAULT CHARSET=utf8 COMMENT='商品分类表';
+
+-- ----------------------------
+-- Records of t_product_class
+-- ----------------------------
+INSERT INTO `t_product_class` VALUES ('1', '全部类别', null, '1', 'spring是很好的项目', '0', '0,');
+INSERT INTO `t_product_class` VALUES ('212', '智能家居', null, '1', 'mybatis是很不错的项目2', '1', '212,0,,');
+INSERT INTO `t_product_class` VALUES ('213', 'zscat系列', null, '1', 'zscat项目1', '1', '0,1,');
+INSERT INTO `t_product_class` VALUES ('214', '前端/后台', null, '1', '11', '1', '0,1,');
+INSERT INTO `t_product_class` VALUES ('215', 'cms项目', null, '1', '2222', '1', '1,');
+INSERT INTO `t_product_class` VALUES ('216', 'oa项目', null, '1', '33', '1', '0,1,');
+INSERT INTO `t_product_class` VALUES ('217', '官网项目', null, '1', '44', '1', '0,1,');
+INSERT INTO `t_product_class` VALUES ('218', '餐饮项目', null, '1', null, '1', null);
+INSERT INTO `t_product_class` VALUES ('228', '美容项目', null, '1', null, '1', null);
+INSERT INTO `t_product_class` VALUES ('229', '宠物项目', null, '1', null, '1', null);
+INSERT INTO `t_product_class` VALUES ('230', '交友项目', null, '1', null, '1', null);
+INSERT INTO `t_product_class` VALUES ('231', '体育项目', null, '1', null, '1', null);
+INSERT INTO `t_product_class` VALUES ('232', '后台', null, '1', '后台', '214', '0,1,214,');
+INSERT INTO `t_product_class` VALUES ('233', '前端', null, '1', '前端', '214', '0,1,214,');
+INSERT INTO `t_product_class` VALUES ('234', '商城项目', null, '1', '商城项目', '232', '0,1,214,232,');
+INSERT INTO `t_product_class` VALUES ('235', '教育网站', null, '1', '教育网站', '232', '0,1,214,232,');
+INSERT INTO `t_product_class` VALUES ('236', 'hplus', null, '1', 'hplus', '233', '0,1,214,233,');
+INSERT INTO `t_product_class` VALUES ('237', 'h-ui', null, '1', 'h-ui', '233', '0,1,214,233,');
+INSERT INTO `t_product_class` VALUES ('238', '商城', null, '1', null, '213', '238,0,1,,');
+INSERT INTO `t_product_class` VALUES ('240', 'java', null, '1', null, '238', '240,238,0,1,,,');
+INSERT INTO `t_product_class` VALUES ('241', 'php', null, '1', null, '238', '241,238,0,1,,,');
+INSERT INTO `t_product_class` VALUES ('242', 'nodejs', null, '1', null, '238', '242,238,0,1,,,');
+INSERT INTO `t_product_class` VALUES ('243', 'java', null, '1', null, '239', '243,239,0,1,,,');
+INSERT INTO `t_product_class` VALUES ('244', 'php', null, '1', null, '239', '244,239,0,1,,,');
+INSERT INTO `t_product_class` VALUES ('246', '分布式', null, '1', null, '238', '246,238,0,1,,,');
+INSERT INTO `t_product_class` VALUES ('247', '后台框架', null, '1', null, '213', '247,0,1,,');
+INSERT INTO `t_product_class` VALUES ('248', 'java', null, '1', null, '247', '248,247,0,1,,,');
+INSERT INTO `t_product_class` VALUES ('249', 'php', null, '1', null, '247', '249,247,0,1,,,');
+INSERT INTO `t_product_class` VALUES ('250', '空气净化', null, '1', null, '212', '250,212,0,,,');
+INSERT INTO `t_product_class` VALUES ('251', '其他智能', null, '1', null, '212', '251,212,0,,,');
+INSERT INTO `t_product_class` VALUES ('252', '空气净化器', null, '1', null, '250', '252,250,212,0,,,,');
+INSERT INTO `t_product_class` VALUES ('253', '智能灯泡', null, '1', null, '251', '253,251,212,0,,,,');
+INSERT INTO `t_product_class` VALUES ('254', '智能插排', null, '1', null, '251', '254,251,212,0,,,,');
+
+-- ----------------------------
+-- Table structure for t_reply
+-- ----------------------------
+DROP TABLE IF EXISTS `t_reply`;
+CREATE TABLE `t_reply` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `goodsid` bigint(20) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `createdate` datetime DEFAULT NULL,
+  `status` int(11) DEFAULT '1',
+  `userid` bigint(20) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_reply
+-- ----------------------------
