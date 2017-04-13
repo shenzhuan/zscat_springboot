@@ -1,5 +1,5 @@
 ### springboot springclod mybatis 通用mapper redis ，kafka freemaker ，beetl，spring blog cms shop 权限管理
-
+开源中国地址  http://git.oschina.net/catshen/zscat_springboot
 
  **zscat-springboot，JavaEE管理系统基础框架-zscat的SpringBoot版本
 当前版本:0.0.1
